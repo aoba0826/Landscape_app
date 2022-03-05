@@ -1,0 +1,1 @@
+inherit_from: .rubocop_todo.yml # .rubocop_todo.yml が空になったら、この行は削除しましょう。
