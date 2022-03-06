@@ -1,6 +1,6 @@
-class Post_image < ApplicationRecord
+class PostImage < ApplicationRecord
   
-  has_many_attached :images
+  has_one_attached :image
   belongs_to :user
   has_many   :likes          , dependent: :destroy
   has_many   :post_comments  , dependent: :destroy

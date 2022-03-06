@@ -1,0 +1,43 @@
+
+<div class="container">
+  <div class="row">
+    <%= form_with model:@post_image,url:post_images_path,method: :post, local:true do |f| %>
+    <div class="col">
+      <table>
+         <tr>
+          <td>
+              
+
+                <%= f.label :"タイトル" %><br/>
+                <%= f.text_field :title ,autofocus: true ,autocomplete: "title" %><br/>
+
+                <%= f.label :"場所" %><br/>
+                <%= f.text_field :place , autocomplete: "place" %><br/>
+
+                <%= f.label :"説明" %><br/>
+                <%= f.text_area :introduction , autocomplete: "introduction" %><br/>
+
+                <%= f.submit '投稿' %>
+
+             
+                <%= link_to "削除", post_image_path(@post_image.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %>
+         
+
+          </td>
+        </tr>
+
+        </table>
+    </div>
+    <div class="col">
+      <table>
+        <tr>
+          <td>
+             <%= f.label :"画像" %><br/>
+                <%= f.file_field :image,accept: "image/*" %><br/>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <% end %>
+  </div>
+</div>

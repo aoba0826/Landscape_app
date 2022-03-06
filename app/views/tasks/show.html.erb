@@ -1,2 +1,22 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table>
+        <tr>
+          <td><%= image_tag @task.post_image.image, size: "200x200" %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col">
+      <table>
+        <tr><td><%= @task.title_task %></td></tr>
+          <tr><td><%= @task.task_place %></td></tr>
+          <tr><td><%= @task.content %></td></tr>
+          <tr><td><%= link_to 'edit' ,edit_task_path%></td></tr>
+          <tr><td><%= link_to 'delite',task_path(@task.id),data: { confirm: '削除してよろしいですか?' } %></td></tr>
+         
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

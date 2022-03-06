@@ -1,0 +1,78 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col col-3">
+      <table>
+        <tr>
+          <td>welcome<strong><%= @user.nickname %></strong></td>
+        </tr>
+        <tr>
+          <td>
+            <%= link_to "todoList",tasks_path %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+              <%= form_with model:@post_image,url:post_images_path,method: :post, local:true do |f| %>
+
+                <%= f.label :"タイトル" %><br/>
+                <%= f.text_field :title ,autofocus: true ,autocomplete: "title" %><br/>
+
+                <%= f.label :"場所" %><br/>
+                <%= f.text_field :place , autocomplete: "place" %><br/>
+
+                <%= f.label :"説明" %><br/>
+                <%= f.text_area :introduction , autocomplete: "introduction" %><br/>
+
+                <%= f.label :"画像" %><br/>
+                <%= f.file_field :image,accept: "image/*" %><br/>
+
+                <%= f.submit '投稿' %>
+
+              <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div class="col col-9">
+      <% @post_images.each do |post_image|%>
+        <table>
+
+          <tr>
+             <% if post_image.image.attached? %>
+                <%= image_tag post_image.image, size: "200x200" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "200x200" %>
+              <% end %>
+          </tr>
+
+          <tr>
+            <td>いいね</td>
+            <td>評価</td>
+            <td>コメント</td>
+            <td>
+              <%= form_with model:@task,url:tasks_path,method: :post,local:true do |f|%>
+
+                  <%= f.hidden_field :post_image_id,:value => post_image.id %>
+                  <%= f.hidden_field :title_task,:value => post_image.title %>
+                  <%= f.hidden_field :task_place,:value => post_image.place %>
+                  <%= f.hidden_field :content,:value => post_image.introduction %>
+
+                  <%= f.submit 'TODO'%>
+              <% end %>
+            </td>
+            <td><%= link_to "削除", post_image_path(post_image.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
+          </tr>
+
+          <tr><td><%= post_image.user.nickname %></td> <td><%= post_image.title %></td></tr>
+
+          <tr><td><%= post_image.introduction %></td><td><%= link_to "詳細" ,post_image_path(post_image.id) %></td></tr>
+
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

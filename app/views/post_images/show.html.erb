@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table>
+
+          <tr>
+             <% if @post_image.image.attached? %>
+                <%= image_tag @post_image.image, size: "200x200" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "200x200" %>
+              <% end %>
+              <%#= image_tag @post_image.image  %></tr>
+
+          <tr>
+            <td>いいね</td>
+            <td>評価</td>
+            <td>コメント</td>
+            <td>TODOリンク</td>
+            <td><%= link_to "削除", post_image_path(@post_image.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
+          </tr>
+
+          <tr><td><%= @post_image.user.nickname %></td> <td><%= @post_image.title %></td></tr>
+
+          <tr><td><%= @post_image.introduction %></td><td><%= link_to "編集" ,edit_post_image_path(@post_image.id) %></td></tr>
+
+        </table>
+    </div>
+  </div>
+</div>
