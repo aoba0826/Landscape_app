@@ -1,8 +1,8 @@
 class CreateNotifications < ActiveRecord::Migration[6.1]
   def change
     create_table :notifications do |t|
-      t.references :post_image,    null: false
-      t.references :post_comment,  null: false
+      t.references :post_image
+      t.references :post_comment
       t.integer :visiter_id
       t.integer :visited_id
       t.string :action

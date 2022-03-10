@@ -1,2 +1,25 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.box {
+  
+   height: 200px;
+   overflow: auto;
+     
+ }
+ .position{
+   position: relative;
+   
+ }
+ .point{
+   position: absolute;
+   top: 10px;
+   left: 400px;
+ }
+ 
+ .list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+ }
+ 

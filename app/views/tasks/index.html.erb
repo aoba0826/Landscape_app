@@ -1,0 +1,19 @@
+<div class="container ">
+   <% @tasks.each do |task|%>
+      <!--<div class="card  shadow p-3   bg-body rounded m-auto " style="max-width: 700px;">-->
+        <div class="row ">
+          <div class="col-md-4">
+            <%= image_tag task.post_image.image ,size: "150x150"%>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= task.title_task %></h5>
+              <p class="card-text"><%= task.task_place %></p>
+              <p class="card-text"><small class="text-muted"><%= task.content %></small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+</div>
+      

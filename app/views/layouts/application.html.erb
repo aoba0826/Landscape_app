@@ -11,6 +11,42 @@
   </head>
 
   <body>
-    <%= yield %>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light ">
+  <div class="container-fluid mb-5">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/"><%= image_tag'logo.png',size:"60x60" ,class:"rounded-circle "%> </a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to 'Home', post_images_path,class:"nav-link active " %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "TODOリスト",tasks_path,class:"nav-link " %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link ">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+          <%# if unchecked_notifications.any? %>
+              <!--<iclass="fa fa-circle" style="color: gold;"></i>-->
+          <%# end %>
+          <%= link_to "ログイン",new_user_session_path %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              <%= link_to "NOTICE", notifications_path, class: "btn-default" %>
+     <main>
+     <%= yield %>
+   </main>
+
   </body>
 </html>

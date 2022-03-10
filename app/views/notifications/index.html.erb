@@ -1,0 +1,37 @@
+<h3 class="">通知</h3>
+    <!--<%#= link_to notifications_path, method: :delete do %>-->
+        <!--<i class="fas fa-trash" style="color: black;"></i>-->
+        <!--<h7 style="color: black;">全削除</h7>-->
+        <%# end %>
+
+<% notifications = @notifications.where.not(visiter_id: current_user.id) %>
+<% if notifications.exists? %>
+<% notifications.each do |notification| %>
+    <% visiter = notification.visiter %>
+    <% visited = notification.visited %>
+
+    <%=link_to user_path(visiter) do %>
+          <%= visiter.name %> さんが
+          <% end %>
+
+      <% case notification.action %>
+       <% when 'follow' then %>
+          あなたをフォローしました
+        <% when 'like' then %>
+         <%= link_to 'あなたの投稿', notification.post_image, style: "font-weight: bold;"%> にいいねしました
+          <% when 'comment' then %>
+        <% if notification.post.user_id == visited.id %>
+          <%= link_to "あなたの投稿", notification.post_image, style: "font-weight: bold;"%>
+        <% else %>
+             <%= link_to post_path(notification.post) do %>
+               <%#= image_tag avatar_url(notification.post.user).to_s, class: "icon_mini" %>
+                 <%= notification.post_image.user.name %>さんの投稿にコメントしました
+           <p><%= Comment.find_by(id: notification.post_comment_id)&.comment %></p>
+          <% end %>
+        <%= time_ago_in_words(notification.created_at).upcase %>
+        <% end %>
+      <% end %>
+     <% end %>
+<% else %>
+    <p>通知はありません</p>
+<% end %>

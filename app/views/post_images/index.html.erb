@@ -4,13 +4,22 @@
   <div class="row">
     <div class="col col-3">
       <table>
-        <tr>
+        <tr> 
           <td>welcome<strong><%= @user.nickname %></strong></td>
         </tr>
         <tr>
           <td>
-            <%= link_to "todoList",tasks_path %>
+            <%= link_to "todoList",tasks_path %><%= link_to 'follow',relationships_path %>
           </td>
+          <tr>
+            <td>
+              <% if current_user.following?(current_user) %>
+                <%= link_to "フォロー外す", user_relationships_path(current_user.id), method: :delete  %>
+               <% else %>
+                <%= link_to "フォローする", user_relationships_path(current_user.id), method: :post  %>
+              <% end %>
+            </td>
+          </tr>
         </tr>
         <tr>
           <td>
@@ -38,19 +47,41 @@
 
 
     <div class="col col-9">
+      
+      
       <% @post_images.each do |post_image|%>
+      <div class="list">
+        
+      </div>
         <table>
 
-          <tr>
+         
              <% if post_image.image.attached? %>
                 <%= image_tag post_image.image, size: "200x200" %>
               <% else %>
                 <%= image_tag 'no_image', size: "200x200" %>
               <% end %>
-          </tr>
+        
 
           <tr>
-            <td>いいね</td>
+            <td>
+              <% if post_image.liked_by?(current_user) %>
+                <p>
+                  <%= link_to  post_image_likes_path(post_image.id), method: :delete  do %>
+                      🤍<%= post_image.likes.count %>
+                  <% end %>
+                </p>
+
+              <% else %>
+                <p>
+                   <%= link_to  post_image_likes_path(post_image.id), method: :post do %>
+                       🤍<%= post_image.likes.count %>
+                 　<% end %>
+                </p>
+              <% end %>
+
+
+            </td>
             <td>評価</td>
             <td>コメント</td>
             <td>

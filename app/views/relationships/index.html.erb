@@ -1,2 +1,52 @@
-<h1>Relationships#index</h1>
-<p>Find me in app/views/relationships/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col"><% if @users_follower.exists? %>
+          <% @users_follower.each do |follower| %>
+            <table>
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= user.name %></td>
+                  <td>フォロー数: <%= user.followings.count %></td>
+                  <td>フォロワー数: <%= user.followers.count %></td>
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+        <% else %>
+          <p>ユーザーはいません</p>
+        <% end %>
+    </div>
+    <div class="col">
+              <% if @users_followed.exists? %>
+             <%= @users_followed.count %>
+          <% @users_followed do |followed| %>
+            <table>
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= followed.nickname %></td>
+                  <td>フォロー数: <%= user.followings.count %></td>
+                  <td>フォロワー数: <%= user.followers.count %></td>
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+        <% else %>
+          <p>ユーザーはいません</p>
+        <% end %>
+    </div>
+  </div>
+</div>

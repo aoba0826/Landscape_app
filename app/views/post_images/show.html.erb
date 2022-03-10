@@ -1,29 +1,59 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <table>
-
-          <tr>
-             <% if @post_image.image.attached? %>
-                <%= image_tag @post_image.image, size: "200x200" %>
+<div class="container ">
+  <div class="row shadow  mb-5 bg-body rounded-3">
+    <div class="col ">
+       <% if @post_image.image.attached? %>
+                <%= image_tag @post_image.image, size: "500x500" ,class:"m-3 rounded-circle " %>
               <% else %>
                 <%= image_tag 'no_image', size: "200x200" %>
               <% end %>
-              <%#= image_tag @post_image.image  %></tr>
 
-          <tr>
-            <td>いいね</td>
-            <td>評価</td>
-            <td>コメント</td>
-            <td>TODOリンク</td>
-            <td><%= link_to "削除", post_image_path(@post_image.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
-          </tr>
+    </div>
+    <div class="col ">
+      <div class="position">
+        <div class="point">
+          <% if @post_image.user == current_user %>
+              <%= link_to edit_post_image_path(@post_image.id),class:"text-dark " do %>
+                <i class="fa-solid fa-ellipsis fa-2x m-2"></i>
+              <% end %>
 
-          <tr><td><%= @post_image.user.nickname %></td> <td><%= @post_image.title %></td></tr>
+              <%= link_to post_image_path(@post_image.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } ,class:"text-dark" do %>
+              <i class="fa-regular fa-trash-can fa-2x m-2"></i>
+              <% end %>
+            <% end %>
+        </div>
+      </div>
+          <div class="m-2"><H4><strong><%= @post_image.user.nickname %></strong></h4></div>
+          <div class="m-2"><h5><%= @post_image.title %></h5></div>
+          <div class="m-2"><P><%= @post_image.introduction %></P></div>
+          <div class="box">
+                      <% @post_image.post_comments.each do |post_comment| %>
 
-          <tr><td><%= @post_image.introduction %></td><td><%= link_to "編集" ,edit_post_image_path(@post_image.id) %></td></tr>
+                        <p><%= post_comment.user.nickname %>
+                        <%= post_comment.comment %><small><%= post_comment.created_at.strftime('%Y/%m/%d') %></small>
 
-        </table>
+                        <% if post_comment.user == current_user %>
+                              <%= link_to  post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete do %>
+                              <i class="fa-regular fa-trash-can fa-xs "></i>
+                              <% end %>
+                        <% elsif post_comment.post_image.user_id == current_user %>
+                              <%= link_to post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete do %>
+                               <i class="fa-regular fa-trash-can fa-xs "></i>
+                              <% end %>
+                        <% end %>
+                        </p>
+                      <% end %>
+            </div>
+                    <p class="m-2">アイデアについて質問をしたり、感想を伝えましょう！</p>
+                   <div class="">
+                      <%= form_with model:[@post_image,@post_comment] do |f| %>
+
+                          <div class="input-group  p-4 ">
+                              <%= f.text_area :comment ,class:"form-control rounded-pill"%>
+                              <%= f.submit "コメント" ,class:"btn btn-outline-secondary rounded-pill"%>
+                          </div>
+                      <% end %>
+                   </div>
+
     </div>
   </div>
 </div>

@@ -4,6 +4,7 @@ class PostImagesController < ApplicationController
     @post_image = PostImage.new
     @post_images = PostImage.all
     @task = Task.new
+    
   end
   
   def create
@@ -17,12 +18,14 @@ class PostImagesController < ApplicationController
 
   def show
     @post_image = PostImage.find(params[:id])
-    
+    @post_comment = PostComment.new
+    @task = Task.new
   end
   
   def destroy
     @post_image = PostImage.find(params[:id])
     @post_image.destroy
+    
     @post_images = PostImage.all
     @user = current_user
     render :index
@@ -30,6 +33,9 @@ class PostImagesController < ApplicationController
 
   def edit
      @post_image = PostImage.find(params[:id])
+  end
+  
+  def update
   end
   
   private
