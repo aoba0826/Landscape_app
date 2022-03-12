@@ -41,7 +41,7 @@ class PostImagesController < ApplicationController
   private
   
   def imaage_params
-    params.require(:post_image).permit(:title,:place,:introduction,:user_id,:image)
+    params.require(:post_image).permit(:title,:place,:introduction,:user_id,:image,:star)
   end
   
 end

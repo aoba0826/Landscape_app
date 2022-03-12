@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2022_03_05_133418) do
     t.string "title", null: false
     t.string "place", null: false
     t.text "introduction", null: false
+    t.float "star"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_post_images_on_user_id"

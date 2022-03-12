@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col col-3">
       <table>
-        <tr> 
+        <tr>
           <td>welcome<strong><%= @user.nickname %></strong></td>
         </tr>
         <tr>
@@ -24,18 +24,47 @@
         <tr>
           <td>
               <%= form_with model:@post_image,url:post_images_path,method: :post, local:true do |f| %>
-
+              <div>
                 <%= f.label :"タイトル" %><br/>
                 <%= f.text_field :title ,autofocus: true ,autocomplete: "title" %><br/>
+              </div>
 
+              <div>
                 <%= f.label :"場所" %><br/>
                 <%= f.text_field :place , autocomplete: "place" %><br/>
+              </div>
 
+              <div>
                 <%= f.label :"説明" %><br/>
                 <%= f.text_area :introduction , autocomplete: "introduction" %><br/>
+              </div>
 
+              <div id="evaluate_stars">
+                <%= f.label :"評価" %>
+                <%= f.hidden_field :evaluation, :value => 'score' %>
+              </div>
+              <div class="form-group row" id="star">
+                <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
+                <%= f.hidden_field :star, id: :review_star %>
+              </div>
+
+                          <!-- 評価javascript -->
+              <script>
+              $('#star').raty({
+                size     : 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+
+                scoreName: 'post_image[star]',
+                half: false,
+              });
+              </script>
+
+              <div>
                 <%= f.label :"画像" %><br/>
                 <%= f.file_field :image,accept: "image/*" %><br/>
+              </div>
+
 
                 <%= f.submit '投稿' %>
 
@@ -47,21 +76,21 @@
 
 
     <div class="col col-9">
-      
-      
+
+
       <% @post_images.each do |post_image|%>
       <div class="list">
-        
+
       </div>
         <table>
 
-         
+
              <% if post_image.image.attached? %>
                 <%= image_tag post_image.image, size: "200x200" %>
               <% else %>
                 <%= image_tag 'no_image', size: "200x200" %>
               <% end %>
-        
+
 
           <tr>
             <td>
@@ -82,7 +111,21 @@
 
 
             </td>
-            <td>評価</td>
+          
+            <p>評価 :<%= post_image.star%>点</p>
+              <div id="star-rate<%= post_image.id%>"></div>
+              <script>
+                $('#star-rate<%= post_image.id%>').raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  half      : false,
+                  readOnly: true,
+                  score: <%= post_image.star %>,
+                });
+              </script>
+            </div>
+            
             <td>コメント</td>
             <td>
               <%= form_with model:@task,url:tasks_path,method: :post,local:true do |f|%>

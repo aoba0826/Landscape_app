@@ -5,7 +5,7 @@ class CreatePostImages < ActiveRecord::Migration[6.1]
       t.string :title      ,null: false
       t.string :place      ,null: false
       t.text :introduction ,null: false
-      
+      t.float :star
 
       t.timestamps
     end
