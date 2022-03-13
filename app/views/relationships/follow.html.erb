@@ -12,9 +12,9 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><%= user.name %></td>
-                  <td>フォロー数: <%= user.followings.count %></td>
-                  <td>フォロワー数: <%= user.followers.count %></td>
+                  <td><%= follower.nickname %></td>
+                  <td>フォロー数: <%= follower.follower_user.count %></td>
+                  <td>フォロワー数: <%= follower.following_user.count %></td>
                 </tr>
               </tbody>
             </table>
@@ -26,7 +26,7 @@
     <div class="col">
               <% if @users_followed.exists? %>
              <%= @users_followed.count %>
-          <% @users_followed do |followed| %>
+          <% @users_followed.each do |followed| %>
             <table>
               <thead>
                 <tr>
@@ -38,8 +38,8 @@
               <tbody>
                 <tr>
                   <td><%= followed.nickname %></td>
-                  <td>フォロー数: <%= user.followings.count %></td>
-                  <td>フォロワー数: <%= user.followers.count %></td>
+                  <td>フォロー数: <%= followed.follower_user.count %></td>
+                  <td>フォロワー数: <%= followed.following_user.count %></td>
                 </tr>
               </tbody>
             </table>

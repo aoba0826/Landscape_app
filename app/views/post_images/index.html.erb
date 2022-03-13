@@ -9,7 +9,7 @@
         </tr>
         <tr>
           <td>
-            <%= link_to "todoList",tasks_path %><%= link_to 'follow',relationships_path %>
+            <%= link_to "todoList",tasks_path %><%= link_to 'follow',user_follow_path(current_user.id) %>
           </td>
           <tr>
             <td>
@@ -39,10 +39,7 @@
                 <%= f.text_area :introduction , autocomplete: "introduction" %><br/>
               </div>
 
-              <div id="evaluate_stars">
-                <%= f.label :"評価" %>
-                <%= f.hidden_field :evaluation, :value => 'score' %>
-              </div>
+           
               <div class="form-group row" id="star">
                 <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
                 <%= f.hidden_field :star, id: :review_star %>

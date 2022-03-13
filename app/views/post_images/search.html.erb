@@ -1,0 +1,18 @@
+<h1> search</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @post_images.each do |post_image| %>
+      <tr>
+        <td><%= post_image.title %></td>
+        <td><%= post_image.place %></td>
+        <td><%= post_image.introduction %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

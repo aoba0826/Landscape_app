@@ -38,6 +38,14 @@ class PostImagesController < ApplicationController
   def update
   end
   
+  def search
+    if params[:keyword].present?
+      @post_images = PostImage.where(['title LIKE ? or place like ? or introduction like ?', "%#{params[:keyword]}%","%#{params[:keyword]}%","%#{params[:keyword]}%"])
+    else
+      @post_images = PostImage.none
+    end
+  end
+  
   private
   
   def imaage_params
