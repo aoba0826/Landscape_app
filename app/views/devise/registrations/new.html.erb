@@ -1,40 +1,45 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+  
+  <div><h2>Landscapeへようこそ!</h2></div>
+  <div class="field m-3">
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname",placeholder: "ニックネーム",class:"form-control" %>
   </div>
   
   
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autocomplete: "name" %>
+  <div class="field m-3">
+    <%= f.text_field :name, autocomplete: "name",placeholder: "名前",class:"form-control" %>
   </div>
 
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
+  <div class="field m-3">
+    <%= f.email_field :email, autocomplete: "email",placeholder: "メールアドレス",class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="field m-3">
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password" ,placeholder: "パスワード作成　6桁以上",class:"form-control"%>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="field m-3">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",placeholder: "パスワード確認",class:"form-control" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="actions d-flex justify-content-center">
+    <%= f.submit "Sign up" ,class:"btn btn-primary rounded-pill"%>
   </div>
+  <div><%= render "devise/shared/links" %></div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+  
+
+    </div>
+  </div>
+</div>
+
