@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users,          only:[:index,:show,:edit,:update]
-  resources :post_images,    only:[:index,:show,:edit,:create,:destroy,:update]do
+  resources :post_images,    only:[:index,:show,:edit,:create,:destroy,:update,:new]do
     resource :likes,         only:[:create,:destroy]
     resources :post_comments,only:[:create,:destroy]
     get :search, on: :collection
