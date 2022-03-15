@@ -2,24 +2,58 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 .box {
-  
+
    height: 200px;
    overflow: auto;
-     
+
  }
  .position{
    position: relative;
-   
+
  }
  .point{
    position: absolute;
    top: 10px;
    left: 400px;
  }
- 
+
  .list{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
  }
- 
+
+ .card1 {
+     margin: auto;
+     width: 350px;
+     height: 400px;
+     border-radius: 30px;
+ }
+ .card-body2 {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+
+@media screen and (max-width: 767px) {
+/* （ここにモバイル用スタイルを記述） */
+  ul.card_shadow {
+    flex-direction: column;
+  }
+  .card_shadow li {
+    width: 300px;
+  }
+}
+
+.sango_shadow {
+  transition: 0.2s ease-in-out;
+  box-shadow: 0 0 3px 0 rgb(0 0 0 / 12%), 0 2px 3px 0 rgb(0 0 0 / 22%);
+}
+
+.sango_shadow:hover {
+  box-shadow: 0 15px 30px -5px rgb(0 0 0 / 15%), 0 0 5px rgb(0 0 0 / 10%);
+  transform: translateY(-4px);
+}
+

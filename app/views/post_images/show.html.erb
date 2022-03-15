@@ -1,16 +1,12 @@
 <div class="container ">
   <div class="row shadow  mb-5 bg-body rounded-3">
     <div class="col ">
-       <% if @post_image.image.attached? %>
-                <%= image_tag @post_image.image, size: "500x500" ,class:"m-3 rounded-circle " %>
-              <% else %>
-                <%= image_tag 'no_image', size: "200x200" %>
-              <% end %>
-
+      <%= image_tag @post_image.get_image, size: "500x500" ,class:"m-3 rounded-circle " %>
     </div>
     <div class="col ">
       <div class="position">
         <div class="point">
+          <%= render 'likes/likes_botton',post_image: @post_image%>
           <% if @post_image.user == current_user %>
               <%= link_to edit_post_image_path(@post_image.id),class:"text-dark " do %>
                 <i class="fa-solid fa-ellipsis fa-2x m-2"></i>
@@ -26,33 +22,11 @@
           <div class="m-2"><h5><%= @post_image.title %></h5></div>
           <div class="m-2"><P><%= @post_image.introduction %></P></div>
           <div class="box">
-                      <% @post_image.post_comments.each do |post_comment| %>
-
-                        <p><%= post_comment.user.nickname %>
-                        <%= post_comment.comment %><small><%= post_comment.created_at.strftime('%Y/%m/%d') %></small>
-
-                        <% if post_comment.user == current_user %>
-                              <%= link_to  post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete do %>
-                              <i class="fa-regular fa-trash-can fa-xs "></i>
-                              <% end %>
-                        <% elsif post_comment.post_image.user_id == current_user %>
-                              <%= link_to post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete do %>
-                               <i class="fa-regular fa-trash-can fa-xs "></i>
-                              <% end %>
-                        <% end %>
-                        </p>
-                      <% end %>
-            </div>
-                    <p class="m-2">アイデアについて質問をしたり、感想を伝えましょう！</p>
-                   <div class="">
-                      <%= form_with model:[@post_image,@post_comment] do |f| %>
-
-                          <div class="input-group  p-4 ">
-                              <%= f.text_area :comment ,class:"form-control rounded-pill"%>
-                              <%= f.submit "コメント" ,class:"btn btn-outline-secondary rounded-pill"%>
-                          </div>
-                      <% end %>
-                   </div>
+            <%= render 'post_comments/post_comments',post_image: @post_image %>
+          </div>
+          <p class="m-2">アイデアについて質問をしたり、感想を伝えましょう！</p>
+            <div class="">
+              <%= render 'post_comments/post_comments_form',post_image: @post_image,post_comment: @post_comment %>
 
     </div>
   </div>

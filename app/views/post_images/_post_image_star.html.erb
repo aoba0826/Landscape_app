@@ -1,0 +1,15 @@
+
+
+<!--<p>評価 :<%#= post_image.star%>点</p>-->
+  <div id="star-rate<%= post_image.id%>"></div>
+<script>
+    $('#star-rate<%= post_image.id %>').empty();
+    $('#star-rate<%= post_image.id%>').raty({
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    half      : false,
+    readOnly: true,
+    score: <%= post_image.star %>,
+    });
+</script>

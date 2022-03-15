@@ -1,14 +1,17 @@
 class PostImagesController < ApplicationController
-  def index
+  
+  def new
     @user = current_user
     @post_image = PostImage.new
+  end
+  
+  def index
     @post_images = PostImage.all
     @task = Task.new
-    
   end
   
   def create
-    @post_image = PostImage.new(imaage_params)
+    @post_image = PostImage.new(image_params)
     @post_image.user_id = current_user.id
     @post_image.save
   
@@ -40,15 +43,15 @@ class PostImagesController < ApplicationController
   
   def search
     if params[:keyword].present?
-      @post_images = PostImage.where(['title LIKE ? or place like ? or introduction like ?', "%#{params[:keyword]}%","%#{params[:keyword]}%","%#{params[:keyword]}%"])
+      @post_images = PostImage.where(['title LIKE ? or place LIKE ? or introduction LIKE ?', "%#{params[:keyword]}%","%#{params[:keyword]}%","%#{params[:keyword]}%"])
     else
-      @post_images = PostImage.none
+      render :index
     end
   end
   
   private
   
-  def imaage_params
+  def image_params
     params.require(:post_image).permit(:title,:place,:introduction,:user_id,:image,:star)
   end
   

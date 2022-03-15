@@ -1,8 +1,5 @@
 class TasksController < ApplicationController
-  def index
-    @tasks = current_user.tasks.all
-  end
-
+ 
   def create
     @task = Task.new(task_params)
     @task.user_id = current_user.id

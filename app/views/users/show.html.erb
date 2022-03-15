@@ -1,1 +1,17 @@
- <h2> user</h2>
+ <div class="container w-50  ">
+   <div class="row d-flex justify-content-center border border-5 m-5 shadow-lg ">
+     <div class="col m-5">
+       <h4 class="text-center"><%= @user.name %></h4>
+       <h4 class="text-center"><%= @user.nickname %></h4>
+       <h4 class="text-center"><%= @user.email %></h4>
+       <h4 class="text-center">
+         photos:<%= @user.post_images.count %>|
+         tasks:<%= @user.tasks.count %></h4>
+       <h4 class="text-center">フォロー数:<%= @user.follower_user.count %>|フォロワー数: <%= @user.following_user.count %></h4>
+       <h4 class="text-center"><%= link_to 'プロフィール編集',edit_user_path %></h4>
+    
+     </div>
+   </div>
+ </div>
+ 
+

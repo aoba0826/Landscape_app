@@ -1,25 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col col-3">
+    <div class="col">
       <table>
         <tr>
           <td>welcome<strong><%= @user.nickname %></strong></td>
-        </tr>
-        <tr>
-          <td>
-            <%= link_to "todoList",tasks_path %><%= link_to 'follow',user_follow_path(current_user.id) %>
-          </td>
-          <tr>
-            <td>
-              <% if current_user.following?(current_user) %>
-                <%= link_to "フォロー外す", user_relationships_path(current_user.id), method: :delete  %>
-               <% else %>
-                <%= link_to "フォローする", user_relationships_path(current_user.id), method: :post  %>
-              <% end %>
-            </td>
-          </tr>
-        </tr>
-        <tr>
+     
           <td>
               <%= form_with model:@post_image,url:post_images_path,method: :post, local:true do |f| %>
               <div>
@@ -67,81 +52,6 @@
           </td>
         </tr>
       </table>
-    </div>
-
-
-    <div class="col col-9">
-
-
-      <% @post_images.each do |post_image|%>
-      <div class="list">
-
-      </div>
-        <table>
-
-
-             <% if post_image.image.attached? %>
-                <%= image_tag post_image.image, size: "200x200" %>
-              <% else %>
-                <%= image_tag 'no_image', size: "200x200" %>
-              <% end %>
-
-
-          <tr>
-            <td>
-              <% if post_image.liked_by?(current_user) %>
-                <p>
-                  <%= link_to  post_image_likes_path(post_image.id), method: :delete  do %>
-                      🤍<%= post_image.likes.count %>
-                  <% end %>
-                </p>
-
-              <% else %>
-                <p>
-                   <%= link_to  post_image_likes_path(post_image.id), method: :post do %>
-                       🤍<%= post_image.likes.count %>
-                 　<% end %>
-                </p>
-              <% end %>
-
-
-            </td>
-          
-            <p>評価 :<%= post_image.star%>点</p>
-              <div id="star-rate<%= post_image.id%>"></div>
-              <script>
-                $('#star-rate<%= post_image.id%>').raty({
-                  size      : 36,
-                  starOff   : '<%= asset_path('star-off.png') %>',
-                  starOn    : '<%= asset_path('star-on.png') %>',
-                  half      : false,
-                  readOnly: true,
-                  score: <%= post_image.star %>,
-                });
-              </script>
-            </div>
-            
-            <td>コメント</td>
-            <td>
-              <%= form_with model:@task,url:tasks_path,method: :post,local:true do |f|%>
-
-                  <%= f.hidden_field :post_image_id,:value => post_image.id %>
-                  <%= f.hidden_field :title_task,:value => post_image.title %>
-                  <%= f.hidden_field :task_place,:value => post_image.place %>
-                  <%= f.hidden_field :content,:value => post_image.introduction %>
-
-                  <%= f.submit 'TODO'%>
-              <% end %>
-            </td>
-            <td><%= link_to "削除", post_image_path(post_image.id), method: :delete ,data: { confirm: '削除してよろしいですか?' } %></td>
-          </tr>
-
-          <tr><td><%= post_image.user.nickname %></td> <td><%= post_image.title %></td></tr>
-
-          <tr><td><%= post_image.introduction %></td><td><%= link_to "詳細" ,post_image_path(post_image.id) %></td></tr>
-
-        </table>
-      <% end %>
     </div>
   </div>
 </div>

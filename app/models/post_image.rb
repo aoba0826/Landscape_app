@@ -7,7 +7,14 @@ class PostImage < ApplicationRecord
   has_many   :notifications  , dependent: :destroy
   has_many   :tasks          , dependent: :destroy
 
-
+  def get_image
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    image
+  end
+  
   def liked_by?(user)
     likes.exists?(user_id: user.id)
   end
@@ -30,7 +37,7 @@ class PostImage < ApplicationRecord
     end
   end
 
-    def create_notification_comment!(current_user, comment_id)
+  def create_notification_comment!(current_user, comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     # 取得したユーザーIDの分だけ通知を作成するとき、同じ通知が複数回登録されてしまうことを防ぐため = distinctメソッド
     temp_ids = Comment.select(:user_id).where(post_image_id: id).where.not(user_id: current_user.id).distinct

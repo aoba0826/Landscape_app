@@ -22,24 +22,33 @@
               <a class="navbar-brand" href="/"><%= image_tag'logo.png',size:"60x60" ,class:"rounded-circle "%> </a>
               <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-       
+
               <li class="nav-item mr-2">
                 <%= link_to 'Home', post_images_path,class:"nav-link active " %>
               </li>
-              <li class="nav-item">
-                <%= link_to "TODOリスト",tasks_path,class:"nav-link " %>
+              <li class="nav-item mr-2">
+                <%= link_to '新規投稿', new_post_image_path,class:"nav-link active " %>
               </li>
               <li class="nav-item">
-               <%= link_to "NOTICE", notifications_path, class: "btn-default" %>
+                <%= link_to "TODOリスト",task_list_user_path(current_user.id),class:"nav-link " %>
+              </li>
+              <li class="nav-item">
+               <%= link_to "NOTICE", notifications_path, class:"nav-link active " %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'follow',user_follow_path(current_user.id), class:"nav-link active "%>
               </li>
               <li class="nav-item">
                   <%= form_with url: search_post_images_path,class: "d-flex", method: :get, local: true do |f| %>
-                  <%= f.text_field :keyword ,class:"form-control me-2", type:"search"%>
+                  <%= f.text_field :keyword ,class:"form-control me-2",type:"search"%>
                   <%= f.submit :search,class:"btn btn-outline-success",type:"submit" %>
                   <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "user", user_path(current_user.id) %>
               </li>
         <% else %>
               <a class="navbar-brand"><%= image_tag'logo.png',size:"60x60" ,class:"rounded-circle "%> </a>
@@ -64,7 +73,7 @@
     </div>
   </div>
 </nav>
-             
+
      <main>
      <%= yield %>
    </main>

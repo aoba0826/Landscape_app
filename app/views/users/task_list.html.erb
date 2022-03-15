@@ -1,9 +1,8 @@
 <div class="container ">
    <% @tasks.each do |task|%>
-      <!--<div class="card  shadow p-3   bg-body rounded m-auto " style="max-width: 700px;">-->
-        <div class="row ">
+        <div class="row border border-3 m-3 shadow">
           <div class="col-md-4">
-            <%= image_tag task.post_image.image ,size: "150x150"%>
+            <%= image_tag task.post_image.get_image ,size: "150x150",class:"rounded-circle"%>
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -13,7 +12,6 @@
             </div>
           </div>
         </div>
+        <% end %>
       </div>
-      <% end %>
-</div>
       
