@@ -39,12 +39,17 @@ class PostImagesController < ApplicationController
   end
   
   def update
+    @post_image = PostImage.find(params[:id])
+    @post_image.update(image_params)
   end
   
   def search
+    @task = Task.new
     if params[:keyword].present?
       @post_images = PostImage.where(['title LIKE ? or place LIKE ? or introduction LIKE ?', "%#{params[:keyword]}%","%#{params[:keyword]}%","%#{params[:keyword]}%"])
     else
+      @post_images = PostImage.all
+      @task = Task.new
       render :index
     end
   end

@@ -1,20 +1,26 @@
+
 <div class="container">
-  <div class="row">
-    <div class="col"><%= image_tag @task.post_image.image, size: "500x500" %></div>
+  <div class="row shadow  mb-5 bg-body rounded-3">
+    <div class="col ">
+      <%=  image_tag @task.post_image.get_image, size: "500x500" ,class:"m-3 rounded-circle " %>
+    </div>
     <div class="col">
-      <%= form_with model:@task,url:task_path,method: :put,local:true do |f| %>
-      <%= f.label :"タスク" %><br>
-      <%= f.text_field :title_task,autofocus: true, autocomplete: "title_task" %><br>
+      <div class="p-5">
+        <%= form_with model:@task,url:task_path,method: :put,local:true do |f| %>
+      <%= f.label :"目標" %><br>
+      <%= f.text_field :title_task,autofocus: true, autocomplete: "title_task" ,class:"form-control" %><br>
       
-      <%= f.label :"place" %><br>
-      <%= f.text_field :task_place,autocomplete: "task_place" %><br>
+      <%= f.label :"場所" %><br>
+      <%= f.text_field :task_place,autocomplete: "task_place" ,class:"form-control" %><br>
       
-      <%= f.label :"content" %><br>
-      <%= f.text_area :content, rows: '5' %><br>
+      <%= f.label :"やりたい事" %><br>
+      <%= f.text_area :content, rows: '5' ,class:"form-control"%><br>
       
       <%= f.submit '投稿' %>
       
       <% end %>
+       
+      </div>
     </div>
   </div>
 </div>

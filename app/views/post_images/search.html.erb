@@ -1,19 +1,42 @@
-<h1> search</h1>
+<div class="container">
+  <div class="list">
+         
+          <% @post_images.each do |post_image|%>
+          <div class="card1 shadow-lg sango_shadow mb-3">
+          <%= link_to post_image_path(post_image.id) do %>
+            <%= image_tag post_image.get_image , class:"card-img-top"; %>
+          <% end %>
+          <div class="card-body pt-0 m-0">
+            <div class="row">
+                  <div class="col-lg-1 mb-0 ">
+                    <%= render 'likes/likes_botton_small',post_image: post_image%>
+                  </div>
+                  <div class="col-lg-1 d-flex align-items-center">
+                    <%= link_to post_image_path(post_image.id) do %>
+                    <i class="far fa-comment text-dark"></i><p class="text-dark "><%#= post_image.post_comments.count %></p>
+                    <% end %>
+                  </div>
+                  <div class="col-lg-6 d-flex align-items-start justify-content-center ml-4">
+                    <%=render 'post_image_star',post_image: post_image%>
+                  </div>
+                  <div class="col-lg-1  d-flex align-items-start ">
+                    <%= link_to user_path(post_image.user.id) do %>
+                    <i class="fas fa-user text-dark"></i>
+                  <% end %>
+                    </div>
+                    <div class="col-lg-1">
+                      <%= render 'tasks/task_botton',task: @task ,post_image: post_image %>
+                    </div>
+              </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>title</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @post_images.each do |post_image| %>
-      <tr>
-        <td><%= post_image.title %></td>
-        <td><%= post_image.place %></td>
-        <td><%= post_image.introduction %></td>
-      </tr>
-    <% end %>
-   
-  </tbody>
-</table>
+                <div class="">
+                  <p class="fs-6 fw-lighter text-wrap p-0 m-0 text-break"><%= post_image.place %></p>
+                  <p class="fs-6 fw-lighter text-wrap p-0 m-0 text-break"><%= post_image.title %></p>
+                </div>
+          </div>
+        </div>
+      <% end %>
+    
+      
+    </div>
+  </div>

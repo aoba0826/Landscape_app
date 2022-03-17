@@ -10,7 +10,7 @@
           <%= link_to edit_task_path(@task.id) do %>
           <i class="fas fa-edit fa-2x m-2"></i>
           <% end %>
-          <%= link_to task_path(@task.id),method: :delite do%>
+          <%= link_to task_path(@task.id),method: :delite,data: { confirm: '削除してよろしいですか?' } do%>
           <i class="fas fa-trash-alt fa-2x m-2"></i>
           <% end %>
         </div>

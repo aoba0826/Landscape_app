@@ -1,28 +1,24 @@
 <div class="container w-50">
+  <h3 class="text-center">通知</h3>
   <div class="row">
     
-    
-    <div class="col d-flex justify-content-center">
+    <%= link_to destroy_all_notifications_path, method: :delete do %>
+        <i class="fas fa-trash" style="color: black;"></i>
+        <h7 style="color: black;">全削除</h7>
+        <% end %>
+    <div class="col d-flex justify-content-center w-50">
      
-    <!--<%#= link_to notifications_path, method: :delete do %>-->
-        <!--<i class="fas fa-trash" style="color: black;"></i>-->
-        <!--<h7 style="color: black;">全削除</h7>-->
-        <%# end %>
-                  <h3 class="text-center">通知</h3>
+    　　
+                 
   <% @notifications = @notifications.where.not(visiter_id: current_user.id) %>
         <% if @notifications.exists? %>
         <% @notifications.each do |notification| %>
         <% visiter = notification.visiter %>
         <% visited = notification.visited %>
   <div>
-     
-      
-     
 
       <% case notification.action %>
        <% when 'follow' then %>
-       <%= image_tag notification.visiter.get_profile_image,size:'50x50' %>
-       
           <%=link_to user_path(visiter) do %>
           <%= visiter.nickname %> さんが
           <% end %>
@@ -35,24 +31,18 @@
          <%= link_to 'あなたの投稿', notification.post_image, style: "font-weight: bold;"%> にいいねしました
           <% when 'comment' then %>
         <% if notification.post_image.user_id == visited.id %>
-        <%= image_tag notification.post_image.get_image,size:'200x200' %>
-        <%=link_to user_path(visiter) do %>
-          <%= visiter.nickname %> さんが
-          <% end %>
           <%= link_to "あなたの投稿", notification.post_image, style: "font-weight: bold;"%>
         <% else %>
-             <%= link_to post_image_path(notification.post_image.id) do %>
-               <%#= image_tag avatar_url(notification.post.user).to_s, class: "icon_mini" %>
-               <% end %>
+             <%= notification.post_image.user.nickname %>さん
         <% end %>
-                 <%= notification.post_image.user.nickname %>さんの投稿にコメントしました
+                 の投稿にコメントしました
            <p><%= PostComment.find_by(id: notification.post_comment_id)&.comment %></p>
-         
-        <%= time_ago_in_words(notification.created_at).upcase %>
-        <%# end %>
+         <% end %>
+        <%= time_ago_in_words(notification.created_at).downcase %>
+        
       <% end %>
-     <% end %>
-<% else %>
+    
+   <% else %>
     <p>通知はありません</p>
       
   </div>

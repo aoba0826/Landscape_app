@@ -19,7 +19,11 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'follow' => 'relationships#follow'
   end
-  resources :notifications,  only:[:index]
+  resources :notifications,  only:[:index] do
+     collection do
+     delete 'destroy_all'
+     end
+  end
   resources :tasks,          only:[:show,:edit,:create,:update,:destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
