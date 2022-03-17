@@ -1,17 +1,22 @@
- <div class="container w-50  ">
-   <div class="row d-flex justify-content-center border border-5 m-5 shadow-lg ">
-     <div class="col m-5">
+ <div class="container w-50 mt-5 ">
+   <div class="row d-flex justify-content-center border border-5 shadow-lg mt-5">
+     <div class="col position m-5 pt-5">
+      <div class="point2"><%= image_tag @user.get_profile_image,size:"200x200",class:"rounded-circle" %></div>
+       <h4 class="text-center mt-5"><%= @user.nickname %></h4>
        <h4 class="text-center"><%= @user.name %></h4>
-       <h4 class="text-center"><%= @user.nickname %></h4>
-       <h4 class="text-center"><%= @user.email %></h4>
        <h4 class="text-center">
          photos:<%= @user.post_images.count %>|
          tasks:<%= @user.tasks.count %></h4>
-       <h4 class="text-center">フォロー数:<%= @user.follower_user.count %>|フォロワー数: <%= @user.following_user.count %></h4>
-       <h4 class="text-center"><%= link_to 'プロフィール編集',edit_user_path %></h4>
-    
+       <h4 class="text-center">フォロワー数:<%= @user.follower_user.count %>|フォロー数: <%= @user.following_user.count %></h4>
+       <% if @user.id == current_user.id %>
+       <h4 class="text-center"><%= @user.email %></h4>
+         <h4 class="text-center"><%= link_to 'プロフィール編集',edit_user_path(@user.id) %></h4>
+         <% else %>
+         <h4 class="text-center"><%= render 'relationships/follow_botton',user: @user%></h4>
+       <% end %>
+
      </div>
    </div>
  </div>
- 
+
 

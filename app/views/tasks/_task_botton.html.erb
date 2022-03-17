@@ -3,5 +3,7 @@
   <%= f.hidden_field :title_task,:value => post_image.title %>
   <%= f.hidden_field :task_place,:value => post_image.place %>
   <%= f.hidden_field :content,:value => post_image.introduction %>
-  <%= f.submit 'TODO'%>
+  <%= f.button :type => "submit", style: 'border-style: none; background: none;' do %>
+    <i class="far fa-address-book"></i>
+  <% end %>
 <% end %>

@@ -1,29 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <table>
-        <tr>
-          <td>welcome<strong><%= @user.nickname %></strong></td>
-     
-          <td>
+    <div class="col d-flex justify-content-center">
+
               <%= form_with model:@post_image,url:post_images_path,method: :post, local:true do |f| %>
-              <div>
+              <div class="text-center">welcome<strong><%= @user.nickname %></strong></div>
+              <div class="field ">
                 <%= f.label :"タイトル" %><br/>
-                <%= f.text_field :title ,autofocus: true ,autocomplete: "title" %><br/>
+                <%= f.text_field :title ,autofocus: true ,autocomplete: "title",class:"form-control" %><br/>
               </div>
 
-              <div>
+              <div class="field">
                 <%= f.label :"場所" %><br/>
-                <%= f.text_field :place , autocomplete: "place" %><br/>
+                <%= f.text_field :place , autocomplete: "place",class:"form-control" %><br/>
               </div>
 
-              <div>
+              <div class="field ">
                 <%= f.label :"説明" %><br/>
-                <%= f.text_area :introduction , autocomplete: "introduction" %><br/>
+                <%= f.text_area :introduction , autocomplete: "introduction",class:"form-control" %><br/>
               </div>
 
-           
-              <div class="form-group row" id="star">
+
+              <div class="form-group row " id="star">
                 <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
                 <%= f.hidden_field :star, id: :review_star %>
               </div>
@@ -40,13 +37,15 @@
               });
               </script>
 
-              <div>
-                <%= f.label :"画像" %><br/>
+              <div class="field ">
+                <%= f.label :"画像" %>
                 <%= f.file_field :image,accept: "image/*" %><br/>
               </div>
 
-
-                <%= f.submit '投稿' %>
+                <div class="d-flex justify-content-center">
+                  <%= f.submit '投稿',class:"btn btn-primary rounded-pill m-3 " %>
+                </div>
+                
 
               <% end %>
           </td>
