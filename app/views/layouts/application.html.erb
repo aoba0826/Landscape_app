@@ -33,9 +33,6 @@
                 <%= link_to "TODOリスト",task_list_user_path(current_user.id),class:"nav-link " %>
               </li>
               <li class="nav-item">
-               <%= link_to "NOTICE", notifications_path, class:"nav-link active " %>
-              </li>
-              <li class="nav-item">
                 <%= link_to 'follow',user_follow_path(current_user.id), class:"nav-link active "%>
               </li>
               <li class="nav-item">
@@ -47,8 +44,14 @@
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
               </li>
+              
               <li class="nav-item">
-                <%= link_to "user", user_path(current_user.id) %>
+                <%= render 'notifications/notification_check_button'%>
+              </li>
+              <li class="nav-item">
+                <%= link_to user_path(current_user.id) do %>
+                <%= image_tag current_user.get_profile_image,size:"50x50",class:"rounded-circle" %>
+                <% end %>
               </li>
         <% else %>
               <a class="navbar-brand"><%= image_tag'logo.png',size:"60x60" ,class:"rounded-circle "%> </a>

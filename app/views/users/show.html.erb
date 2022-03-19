@@ -11,6 +11,7 @@
        <% if @user.id == current_user.id %>
        <h4 class="text-center"><%= @user.email %></h4>
          <h4 class="text-center"><%= link_to 'プロフィール編集',edit_user_path(@user.id) %></h4>
+         <h4><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></h4>
          <% else %>
          <h4 class="text-center"><%= render 'relationships/follow_botton',user: @user%></h4>
        <% end %>

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def task_list
     @user = User.find(params[:id])
-    @tasks = Task.where(user_id: @user.id)
+    @tasks = Task.where(user_id: @user.id).page(params[:page]).per(4)
   end
   
   private

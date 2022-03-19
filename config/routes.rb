@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
     
-  resources :post_images,    only:[:new,:index,:show,:edit,:create,:destroy,:update,]do
+  resources :post_images,    only:[:new,:index,:show,:edit,:create,:destroy,:update]do
     resource :likes,         only:[:create,:destroy]
     resources :post_comments,only:[:create,:destroy]
     get :search, on: :collection

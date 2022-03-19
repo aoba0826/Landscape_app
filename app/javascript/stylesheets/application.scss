@@ -14,7 +14,7 @@
  .point{
    position: absolute;
    top: 10px;
-   left: 350px;
+   left: 330px;
  }
 
 .point2{
@@ -62,3 +62,24 @@
   transform: translateY(-4px);
 }
 
+.i-point {
+  position: absolute;
+  top: -24px;
+  left : 18px;
+ 
+}
+
+
+.i-point2{
+  position: absolute;
+  top: -12px;
+  left :  27px;
+ 
+}
+
+.text-c {
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
