@@ -1,12 +1,11 @@
 class PostImage < ApplicationRecord
-  
-  default_scope->{order(created_at: :desc)}
+  default_scope -> { order(created_at: :desc) }
   has_one_attached :image
   belongs_to :user
-  has_many   :likes          , dependent: :destroy
-  has_many   :post_comments  , dependent: :destroy
-  has_many   :notifications  , dependent: :destroy
-  has_many   :tasks          , dependent: :destroy
+  has_many   :likes, dependent: :destroy
+  has_many   :post_comments, dependent: :destroy
+  has_many   :notifications, dependent: :destroy
+  has_many   :tasks, dependent: :destroy
 
   def get_image
     unless image.attached?
@@ -15,7 +14,7 @@ class PostImage < ApplicationRecord
     end
     image
   end
-  
+
   def liked_by?(user)
     likes.exists?(user_id: user.id)
   end
@@ -31,9 +30,7 @@ class PostImage < ApplicationRecord
         action: 'like'
       )
       # 自分の投稿に対するいいねの場合は、通知済みとする
-      if notification.visiter_id == notification.visited_id
-        notification.checked = true
-      end
+      notification.checked = true if notification.visiter_id == notification.visited_id
       notification.save if notification.valid?
     end
   end
@@ -58,11 +55,7 @@ class PostImage < ApplicationRecord
       action: 'comment'
     )
     # 自分の投稿に対するコメントの場合は、通知済みとする
-    if notification.visiter_id == notification.visited_id
-      notification.checked = true
-    end
+    notification.checked = true if notification.visiter_id == notification.visited_id
     notification.save if notification.valid?
   end
-
-
 end

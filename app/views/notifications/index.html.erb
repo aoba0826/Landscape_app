@@ -21,8 +21,8 @@
           <% end %>
       <% case notification.action %>
        <% when 'follow' then %>
-
           あなたをフォローしました
+          
         <% when 'like' then %>
 
          <%= link_to 'あなたの投稿', notification.post_image, style: "font-weight: bold;"%> にいいねしました
@@ -57,5 +57,5 @@
     </div>
   </div>
 </div>
-   <%#= paginate @notifications %>
+
 

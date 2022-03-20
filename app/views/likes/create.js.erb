@@ -1,1 +1,1 @@
-$("#like_buttons<%= post_image.id %>").html("<%= j(render partial: 'likes/like_button_small', locals:{post_image: post_image})%>");
+$("#like_buttons_<% post_image.id %>").html("<%= j(render 'likes/like_button_small',post_image: post_image)%>");

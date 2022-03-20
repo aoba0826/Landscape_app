@@ -1,5 +1,4 @@
 class PostImagesController < ApplicationController
-
   def new
     @user = current_user
     @post_image = PostImage.new
@@ -18,7 +17,6 @@ class PostImagesController < ApplicationController
     redirect_to post_images_path
   end
 
-
   def show
     @post_image = PostImage.find(params[:id])
     @post_comment = PostComment.new
@@ -35,7 +33,7 @@ class PostImagesController < ApplicationController
   end
 
   def edit
-     @post_image = PostImage.find(params[:id])
+    @post_image = PostImage.find(params[:id])
   end
 
   def update
@@ -50,7 +48,7 @@ class PostImagesController < ApplicationController
   def search
     @task = Task.new
     if params[:keyword].present?
-      @post_images = PostImage.where(['title LIKE ? or place LIKE ? or introduction LIKE ?', "%#{params[:keyword]}%","%#{params[:keyword]}%","%#{params[:keyword]}%"])
+      @post_images = PostImage.where(['title LIKE ? or place LIKE ? or introduction LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%"])
     else
       @post_images = PostImage.page(params[:page]).per(12)
       @task = Task.new
@@ -61,7 +59,6 @@ class PostImagesController < ApplicationController
   private
 
   def image_params
-    params.require(:post_image).permit(:title,:place,:introduction,:user_id,:image,:star)
+    params.require(:post_image).permit(:title, :place, :introduction, :user_id, :image, :star)
   end
-
 end
