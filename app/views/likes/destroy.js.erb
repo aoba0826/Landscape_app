@@ -1,2 +1,3 @@
 console.log('JavaScript');
-$("#likes_button_small<%=@post_image.id%>").html("<%= j(render 'likes/likes_button_small',post_image: @post_image)%>");
+$("#likes_button_small<%= @post_image.id %>").html("<%= j(render 'likes/likes_button_small',post_image: @post_image)%>");
+$("#likes_button<%= @post_image.id %>").html("<%= j(render 'likes/likes_button',post_image: @post_image)%>");

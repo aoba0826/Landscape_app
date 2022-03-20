@@ -15,7 +15,10 @@
               <i class="fas fa-trash-alt fa-2x m-2"></i>
               <% end %>
           <% else %>
-              <%= render 'likes/likes_button',post_image: @post_image%>
+              <div id="likes_button<%= @post_image.id %>">
+                <%= render 'likes/likes_button',post_image: @post_image%>
+              </div>
+              
 
               <%= render 'relationships/follow_botton',user: @post_image.user%>
 
