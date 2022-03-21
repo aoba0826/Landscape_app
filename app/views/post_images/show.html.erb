@@ -18,9 +18,11 @@
               <div id="likes_button<%= @post_image.id %>">
                 <%= render 'likes/likes_button',post_image: @post_image%>
               </div>
-              
 
-              <%= render 'relationships/follow_botton',user: @post_image.user%>
+               <div id="follow_button<%= @post_image.user.id %>">
+                 <%= render 'relationships/follow_button',user: @post_image.user%>
+               </div>
+
 
               <%= render 'tasks/task_botton',task: @task ,post_image: @post_image %>
           <% end %>
@@ -37,7 +39,7 @@
           </div>
           <div class="col-10">
             <p class="m-0 p-0"><%= @post_image.user.nickname %>さん</p>
-            <p class="m-0 p-0">フォロワー：<%= @post_image.user.follower_user.count %></p>
+            <p class="m-0 p-0">フォロワー：<span id="btn-a<%= @post_image.user.id %>"><%= @post_image.user.follower_user.count %></span></p>
           </div>
         </div>
 

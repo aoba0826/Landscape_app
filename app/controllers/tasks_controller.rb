@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :set_task, except: [:create]
   def create
     @task = Task.new(task_params)
     @task.user_id = current_user.id
@@ -7,25 +8,26 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
     @task.update(task_params)
     redirect_to task_list_user_path(@task.user.id)
   end
 
   def destroy
-    @task = Task.find(params[:id]).destroy
+    @task.destroy
     redirect_to request.referer
   end
 
   private
+  
+  def set_task
+     @task = Task.find(params[:id])
+  end
 
   def task_params
     params.require(:task).permit(:user_id, :post_image_id, :title_task, :task_place, :content)

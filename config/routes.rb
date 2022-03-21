@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update] do
     member do
       get :task_list
+      get :follow_list
     end
   end
 
@@ -17,7 +18,6 @@ Rails.application.routes.draw do
 
   resources :users do
     resource :relationships, only: [:create, :destroy]
-    get 'follow' => 'relationships#follow'
   end
   resources :notifications, only: [:index] do
     collection do

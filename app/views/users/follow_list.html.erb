@@ -12,23 +12,26 @@
           <div class="col-md-4 my-4"><P class="text-center m-0 p-0"><%= follower.nickname %>さん</P></div>
           <div class="col-md-3 d-flex align-items-center">
             <div class="card-body p-0">
-              <p class="card-text m-0 p-0"><small>フォロー数:</small><%= follower.follower_user.count %></p>
-              <p class="card-text m-0 p-0"><small>フォロワー数:</small><%= follower.following_user.count %></p>
+              <p class="card-text m-0 p-0"><small>フォロー数:</small><span id="btn-a<%= follower.id %>"><%= follower.follower_user.count %></span></p>
+              <p class="card-text m-0 p-0"><small>フォロワー数:</small><span id="btn-a<%= follower.id %>"><%= follower.following_user.count %></span></p>
             </div>
           </div>
           <div class="col-md-3">
-            <div class=" my-4 mx-0 p-0"><%= render 'relationships/follow_botton', user: follower %></div>
+            <div class=" my-4 mx-0 p-0">
+              <div id="follow_button<%= follower.id %>">
+                 <%= render 'relationships/follow_button',user: follower%>
+              </div>
           </div>
         </div>
       </div>
- 
+
           <% end %>
         <% else %>
         <div class="col "><p>ユーザーはいません</p></div>
         <% end %>
     </div>
-    
-   
+
+
               <% if @users_followed.exists? %>
              <%= @users_followed.count %>人フォロー中
           <% @users_followed.each do |followed| %>
@@ -41,12 +44,16 @@
           <div class="col-md-4 my-4"><P class="text-center m-0 p-0"><%= followed.nickname %>さん</P></div>
           <div class="col-md-3 d-flex align-items-center">
             <div class="card-body p-0">
-              <p class="card-text m-0 p-0"><small>フォロー数:</small><%= followed.following_user.count %></p>
-              <p class="card-text m-0 p-0"><small>フォロワー数:</small><%= followed.follower_user.count %></p>
+              <p class="card-text m-0 p-0"><small>フォロー数:</small><span id="btn-a<%= followed.id %>"><%= followed.following_user.count %></span></p>
+              <p class="card-text m-0 p-0"><small>フォロワー数:</small><span id="btn-a<%= followed.id %>"><%= followed.follower_user.count %></span></p>
             </div>
           </div>
           <div class="col-md-3">
-            <div class=" my-4 mx-0 p-0"><%= render 'relationships/follow_botton', user: followed %></div>
+            <div class=" my-4 mx-0 p-0">
+              <div id="follow_button<%= followed.id %>">
+                   <%= render 'relationships/follow_button',user: followed %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -55,6 +62,6 @@
           <p>ユーザーはいません</p>
         <% end %>
     </div>
-  
+
 </div>
 </div>
