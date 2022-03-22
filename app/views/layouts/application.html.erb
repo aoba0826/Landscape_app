@@ -18,15 +18,15 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
-        
+
         <li class="nav-item  d-flex align-items-center">
-          <%= link_to 'Home', post_images_path,class:'p-3 mb-2 bg-danger text-white rounded-pill' %>
+          <%= link_to 'Home', post_images_path,class:'p-3 mb-2 rounded-pill btn btn-outline-danger' %>
         </li>
-        
+
         <li class="nav-item mx-5 d-flex align-items-center">
-           <%= link_to '新規投稿', new_post_image_path,class:"p-3 mb-2 bg-danger text-white rounded-pill"%>
+           <%= link_to '新規投稿', new_post_image_path,class:"p-3 mb-2 rounded-pill btn btn-outline-danger"%>
         </li>
-        
+
          <%= form_with url: search_post_images_path,class: "d-flex m-3", method: :get, local: true do |f| %>
                   <%= f.text_field :keyword ,class:"form-control ",type:"search"%>
                   <%= f.submit :search,class:"btn btn-outline-success",type:"submit" %>
@@ -36,19 +36,17 @@
            <i class="far fa-address-book fa-2x "></i>
           <% end %>
         </li>
-        
+
         <li class="nav-item ml-2 d-flex align-items-center">
           <%= render 'notifications/notification_check_button'%>
         </li>
-        
+
         <li class="nav-item ml-2 d-flex align-items-center">
-          <%= link_to user_path(current_user.id) do %>
-            <%= image_tag current_user.get_profile_image,size:"50x50",class:"rounded-circle" %>
-          <% end %>
+          <%= render 'users/user_link',user: current_user %>
         </li>
-        
+
         <% else %>
-        
+
         <li class="nav-item m-3">
           <%= link_to "無料登録",new_user_registration_path, class:"p-3 mb-2 bg-light text-dark rounded-pill"%>
         </li>
@@ -62,6 +60,11 @@
   </nav>
 </header>
    <main>
+     <div id="flash-message">
+    <%#= render 'laouts/flash' %>
+  </div>
+     <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
      <%= yield %>
    </main>
 

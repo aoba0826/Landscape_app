@@ -1,4 +1,8 @@
 <%= form_with model:[post_image,post_comment] do |f| %>
+    <div id="comments-error">
+      <%= render 'layouts/error_message', model: f.object %>
+    </div>
+    
     <div class="input-group  p-4 ">
       <%= f.text_area :comment ,class:"form-control rounded-pill"%>
       <%= f.submit "コメント" ,class:"btn btn-outline-secondary rounded-pill"%>

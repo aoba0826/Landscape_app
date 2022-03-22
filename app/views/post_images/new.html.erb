@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
+
     <div class="col d-flex justify-content-center">
 
               <%= form_with model:@post_image,url:post_images_path,method: :post, local:true do |f| %>
-              <div class="text-center">welcome<strong><%= @user.nickname %></strong></div>
+               <%= render 'layouts/error_message', model: f.object %>
               <div class="field ">
                 <%= f.label :"タイトル" %><br/>
                 <%= f.text_field :title ,autofocus: true ,autocomplete: "title",class:"form-control" %><br/>
@@ -45,7 +46,7 @@
                 <div class="d-flex justify-content-center">
                   <%= f.submit '投稿',class:"btn btn-primary rounded-pill m-3 " %>
                 </div>
-                
+
 
               <% end %>
           </td>

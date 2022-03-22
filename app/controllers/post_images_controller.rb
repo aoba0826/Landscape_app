@@ -1,33 +1,32 @@
 class PostImagesController < ApplicationController
   before_action :set_post_image, except: [:new,:create,:index,:search]
+  before_action :set_task,except: [:new,:create,:edit]
 
   def new
     @user = current_user
     @post_image = PostImage.new
   end
-  
+
   def create
     @post_image = PostImage.new(image_params)
     @post_image.user_id = current_user.id
-    @post_image.save
-
-    redirect_to post_images_path
+     if @post_image.save
+      redirect_to post_images_path
+    else
+      render :new
+    end
   end
 
   def index
     @post_images = PostImage.page(params[:page]).per(12)
-    @task = Task.new
   end
 
   def show
     @post_comment = PostComment.new
-    @task = Task.new
   end
 
   def destroy
     @post_image.destroy
-
-    @task = Task.new
     @post_images = PostImage.page(params[:page]).per(12)
     render :index
   end
@@ -37,28 +36,29 @@ class PostImagesController < ApplicationController
 
   def update
     @post_image.update(image_params)
-
     @post_comment = PostComment.new
-    @task = Task.new
     render :show
   end
 
   def search
-    @task = Task.new
     if params[:keyword].present?
-      @post_images = PostImage.where(['title LIKE ? or place LIKE ? or introduction LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%"])
+      @post_images = PostImage.where(['title LIKE ? or place LIKE ? or introduction LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%"]).page(params[:page]).per(12)
     else
       @post_images = PostImage.page(params[:page]).per(12)
-      @task = Task.new
       render :index
     end
   end
 
   private
-  
+
   def set_post_image
     @post_image = PostImage.find(params[:id])
   end
+
+  def set_task
+    @task = Task.new
+  end
+
   def image_params
     params.require(:post_image).permit(:title, :place, :introduction, :user_id, :image, :star)
   end

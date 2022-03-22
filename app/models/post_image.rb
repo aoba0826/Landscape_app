@@ -7,6 +7,9 @@ class PostImage < ApplicationRecord
   has_many   :notifications, dependent: :destroy
   has_many   :tasks, dependent: :destroy
 
+  validates :title, length: {maximum: 50}
+  validates :title,:place,:introduction,:image,presence: true
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

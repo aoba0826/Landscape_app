@@ -2,3 +2,4 @@ console.log("user_id: <%= @user.id %>");
 $("#btn-a<%= @user.id %>").html("<%= @user.follower_user.count %>");
 $("#btn-b<%= @user.id %>").html("<%= @user.following_user.count %>");
 $("#follow_button<%= @user.id %>").html("<%= j(render 'relationships/follow_button',user: @user)%> ");
+location.reload();

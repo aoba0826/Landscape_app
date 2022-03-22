@@ -1,67 +1,15 @@
-<div class="container">
-  <div class="row ">
-    <% if @users_follower.exists? %>
-        <%= @users_follower.count %>人フォロワー
-          <% @users_follower.each do |follower| %>
-             <div class="col ">
-               <div class="card p-0 mx-auto border shadow-lg d-flex justify-content-center ">
-        <div class="row g-0 ">
-          <div class="col-md-2 ps-5">
-            <%= image_tag follower.get_profile_image ,size: "50x50",class:"rounded-circle m-2 "%>
-          </div>
-          <div class="col-md-4 my-4"><P class="text-center m-0 p-0"><%= follower.nickname %>さん</P></div>
-          <div class="col-md-3 d-flex align-items-center">
-            <div class="card-body p-0">
-              <p class="card-text m-0 p-0"><small>フォロー数:</small><span id="btn-a<%= follower.id %>"><%= follower.follower_user.count %></span></p>
-              <p class="card-text m-0 p-0"><small>フォロワー数:</small><span id="btn-a<%= follower.id %>"><%= follower.following_user.count %></span></p>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class=" my-4 mx-0 p-0">
-              <div id="follow_button<%= follower.id %>">
-                 <%= render 'relationships/follow_button',user: follower%>
-              </div>
-          </div>
-        </div>
-      </div>
-
-          <% end %>
-        <% else %>
-        <div class="col "><p>ユーザーはいません</p></div>
-        <% end %>
+<div class="container w-50">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">フォロー中</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">フォロワー</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><%= render 'users/followed',users_followed: @users_followed %></div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><%= render 'users/follower',users_follower: @users_follower %></div>
     </div>
-
-
-              <% if @users_followed.exists? %>
-             <%= @users_followed.count %>人フォロー中
-          <% @users_followed.each do |followed| %>
-          <div class="col-6 ">
-               <div class="card p-0 mx-auto border shadow-lg d-flex justify-content-center ">
-        <div class="row g-0 ">
-          <div class="col-md-2 ps-5">
-            <%= image_tag followed.get_profile_image ,size: "50x50",class:"rounded-circle m-2 "%>
-          </div>
-          <div class="col-md-4 my-4"><P class="text-center m-0 p-0"><%= followed.nickname %>さん</P></div>
-          <div class="col-md-3 d-flex align-items-center">
-            <div class="card-body p-0">
-              <p class="card-text m-0 p-0"><small>フォロー数:</small><span id="btn-a<%= followed.id %>"><%= followed.following_user.count %></span></p>
-              <p class="card-text m-0 p-0"><small>フォロワー数:</small><span id="btn-a<%= followed.id %>"><%= followed.follower_user.count %></span></p>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class=" my-4 mx-0 p-0">
-              <div id="follow_button<%= followed.id %>">
-                   <%= render 'relationships/follow_button',user: followed %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-          <% end %>
-        <% else %>
-          <p>ユーザーはいません</p>
-        <% end %>
-    </div>
-
 </div>
-</div>
+
