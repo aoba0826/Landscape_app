@@ -1,4 +1,5 @@
-<% post_image.post_comments.each do |post_comment| %>
+<% post_comments = post_image.post_comments.order(created_at: :desc) %>
+<% post_comments.each do |post_comment| %>
   <p><span><%= post_comment.user.nickname %>
      <%= post_comment.comment %><small><%= post_comment.created_at.strftime('%m/%d') %></small>
       <% if post_comment.user.id == current_user.id %>

@@ -52,7 +52,8 @@
         <% end %>
        </div>
        <div class="tab-pane fade box2 " style="width: 430px; height: 402px;" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <% @user.likes.each do |likes| %>
+        <% @likes = @user.likes.order(created_at: :desc) %>
+        <% @likes.each do |likes| %>
          <%= link_to post_image_path(likes.post_image.id) do %>
           <%= image_tag likes.post_image.get_image,size:"134x134" %>
          <% end %>
