@@ -6,21 +6,19 @@ class PostCommentsController < ApplicationController
     @post_comment.user_id = current_user.id
     @post = @post_comment.post_image
     if @post_comment.save
-      flash.now[:notice] = 'コメントを投稿しました'
+       flash.now[:notice] = 'コメントを投稿しました'
       # 通知の作成
       @post.create_notification_comment!(current_user, @post_comment.id)
-      redirect_to post_image_path(@post_image.id)
     else
-      render 'post_images/show'
+      render :error
     end
-      
   end
 
   def destroy
-    post_comment = PostComment.find(params[:id]).destroy
+    @post_comment = PostComment.find(params[:id]).destroy
     flash.now[:alert] = '投稿を削除しました'
 
-    redirect_to request.referer
+    @post_image = PostImage.find(params[:post_image_id])
   end
 
   private

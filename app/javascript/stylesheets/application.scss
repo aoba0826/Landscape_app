@@ -2,10 +2,12 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 .box {
-
    height: 100px;
    overflow: auto;
-
+ }
+ 
+ .box2 {
+   overflow: auto;
  }
  .position{
    position: relative;

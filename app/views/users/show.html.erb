@@ -1,30 +1,68 @@
- <div class="container w-50 mt-5 ">
-   <div class="row d-flex justify-content-center border border-5 shadow-lg mt-5">
-     <div class="col position m-5 pt-5">
-      <div class="point2"><%= image_tag @user.get_profile_image,size:"200x200",class:"rounded-circle" %></div>
-       <h4 class="text-center mt-5"><%= @user.nickname %></h4>
-       <h4 class="text-center"><%= @user.name %></h4>
-       <h4 class="text-center">
-         photos:<%= @user.post_images.count %>|
-         tasks:<%= @user.tasks.count %></h4>
-       <h4 class="text-center">
-        フォロワー数:<span id="btn-a<%= @user.id %>"><%= @user.follower_user.count %></span>|フォロー数:<span id="btn-b<%= @user.id %>"><%= @user.following_user.count %></span>
-        </h4>
-       <% if @user.id == current_user.id %>
-       <h4 class="text-center"><%= @user.email %></h4>
-         <h4 class="text-center"><%= link_to 'プロフィール編集',edit_user_path(@user.id) %></h4>
-         <h4><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></h4>
-         <p><%= link_to 'follow',follow_list_user_path, class:"nav-link active "%></p>
-         <% else %>
-         <h4 class=" text-center">
-          <div id="follow_button<%= @user.id %>">
-           <%= render 'relationships/follow_button',user: @user%>
-          </div>
-         </h4>
-       <% end %>
 
+<div class="container">
+ <div class="row">
+  <div class="col-6 d-flex justify-content-end">
+    <div class="card" style="width: 75%; height: 445px;">
+     <div class="d-flex justify-content-center mt-4"><%= image_tag @user.get_profile_image,size:"100x100",class:"border border-dark rounded-circle mt-3" %></div>
+     <div class="card-body">
+      <% if @user.id == current_user.id %>
+             <h4 class="text-center">
+              　Photos:<%= @user.post_images.count %>  |  Tasks:<%= @user.tasks.count %></h4>
+             <p class="text-center">ニックネーム:<strong><%= @user.nickname %></strong></p>
+             <p class="text-center">名前:<strong><%= @user.name %></strong></p>
+             <p class="text-center">e-mail:<%= @user.email %></p>
+             <%= link_to follow_list_user_path do %>
+                  <p class="text-center">
+                   フォロワー:<span id="btn-a<%= @user.id %>"><%= @user.follower_user.count %></span>  |  フォロー中:<span id="btn-b<%= @user.id %>"><%= @user.following_user.count %></span>
+                  </p>
+              <% end %>
+              <div class="d-flex justify-content-center">
+                <%= link_to 'プロフィール編集',edit_user_path(@user.id),class:"btn btn-success mr-1" %><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class:"btn btn-danger" %>
+              </div>
+      <% else %>
+             <p class="text-center"><strong><%= @user.nickname %></strong></p>
+             <p class="text-center">photos:<%= @user.post_images.count %></p>
+             <p class="text-center">
+             フォロワー:<span id="btn-a<%= @user.id %>"><%= @user.follower_user.count %></span>  |  フォロー中:<span id="btn-b<%= @user.id %>"><%= @user.following_user.count %></span>
+             </p>
+             <div id="follow_button<%= @user.id %>">
+               <p class="text-center"><%= render 'relationships/follow_button',user: @user%></p>
+             </div>
+      <% end %>
+    </div>
+   </div>
+  </div>
+  <div class="col-6 d-flex justify-content-start">
+   <div class="card m-0 p-0 border-0" style="width: 426px; height: 402px;">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+     <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-th fa-lg"></i></a>
+     </li>
+     <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-heart fa-lg"></i></a>
+     </li>
+    </ul>
+    <div class="list p-0">
+     <div class="tab-content" id="myTabContent">
+       <div class="tab-pane fade show active box2" style="width: 430px; height: 402px;" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <% @user.post_images.each do |posts| %>
+         <%= link_to post_image_path(posts.id) do %>
+          <%= image_tag posts.get_image,size:"134x134" %>
+         <% end %>
+        <% end %>
+       </div>
+       <div class="tab-pane fade box2 " style="width: 430px; height: 402px;" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <% @user.likes.each do |likes| %>
+         <%= link_to post_image_path(likes.post_image.id) do %>
+          <%= image_tag likes.post_image.get_image,size:"134x134" %>
+         <% end %>
+        <% end %>
+       </div>
      </div>
+    </div>
+    </div>
    </div>
  </div>
+</div>
 
 

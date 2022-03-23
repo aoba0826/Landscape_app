@@ -1,15 +1,14 @@
 <% post_image.post_comments.each do |post_comment| %>
-  <p><%= post_comment.user.nickname %>
-     <%= post_comment.comment %><small><%= post_comment.created_at.strftime('/%m/%d') %></small>
-
-      <%# if post_comment.user == current_user %>
-         <%= link_to  post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete do %>
-            <i class="fa-regular fa-trash-can fa-xs "></i>
+  <p><span><%= post_comment.user.nickname %>
+     <%= post_comment.comment %><small><%= post_comment.created_at.strftime('%m/%d') %></small>
+      <% if post_comment.user.id == current_user.id %>
+         <%= link_to  post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete ,remote: true do %>
+            <i class="fas fa-trash-alt"></i>
          <% end %>
-      <%# elsif post_comment.post_image.user_id == current_user %>
-          <%= link_to post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete do %>
-             <i class="fa-regular fa-trash-can fa-xs "></i>
+      <% elsif post_comment.post_image.user_id == current_user.id %>
+          <%= link_to post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete,remote: true  do %>
+             <i class="fas fa-trash-alt"></i>
           <% end %>
-      <%# end %>
-  </p>
+      <% end %>
+  </span></p>
 <% end %>
