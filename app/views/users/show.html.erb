@@ -17,7 +17,7 @@
                   </p>
               <% end %>
               <div class="d-flex justify-content-center">
-                <%= link_to 'プロフィール編集',edit_user_path(@user.id),class:"btn btn-success mr-1" %><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class:"btn btn-danger" %>
+                <%= link_to 'プロフィール編集',edit_user_path(@user.id),class:"btn btn-success mr-1" %><%= link_to "ログアウト", destroy_user_session_path, method: :delete,data: { confirm: 'ログアウトしてよろしいですか?' },class:"btn btn-danger" %>
               </div>
       <% else %>
              <p class="text-center"><strong><%= @user.nickname %></strong></p>

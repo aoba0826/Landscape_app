@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: 名前
+        nickname: ニックネーム
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: 次回から自動的にログイン
+      post_image:
+        title: タイトル
+        place: 場所
+        introduction: 説明
+        image: 画像
+      post_comment:
+        comment: コメント
+    
