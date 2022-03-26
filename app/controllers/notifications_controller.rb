@@ -9,6 +9,7 @@ class NotificationsController < ApplicationController
     end
 
     @notifications = @notifications.page(params[:page]).order(created_at: :desc).per(15)
+     redirect_to post_images_path unless current_user.id == @notification.user_id
   end
 
   def destroy_all

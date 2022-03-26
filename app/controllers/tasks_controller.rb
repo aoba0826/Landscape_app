@@ -8,9 +8,11 @@ class TasksController < ApplicationController
   end
 
   def show
+     redirect_to post_images_path unless current_user.id == @task.user_id
   end
 
   def edit
+     redirect_to post_images_path unless current_user.id == @task.user_id
   end
 
   def update

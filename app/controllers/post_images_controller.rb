@@ -37,6 +37,7 @@ class PostImagesController < ApplicationController
   end
 
   def edit
+    redirect_to post_images_path unless current_user.id == @post_image.user_id
   end
 
   def update

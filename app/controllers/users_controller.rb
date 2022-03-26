@@ -2,11 +2,13 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
   before_action :set_user
+  
 
   def show
   end
 
   def edit
+    redirect_to post_images_path unless current_user.id == @user.id
   end
 
   def update
@@ -17,11 +19,13 @@ class UsersController < ApplicationController
 
   def task_list
     @tasks = Task.where(user_id: @user.id).page(params[:page]).per(4).order(id: :DESC)
+    redirect_to post_images_path unless current_user.id == @user.id
   end
 
   def follow_list
     @users_follower = @user.follower_user
     @users_followed = @user.following_user
+    redirect_to post_images_path unless current_user.id == @user.id
   end
 
   private
