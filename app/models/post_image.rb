@@ -22,6 +22,10 @@ class PostImage < ApplicationRecord
     likes.exists?(user_id: user.id)
   end
 
+  def self.searching(keyword)
+      self.where(['title LIKE ? or place LIKE ? or introduction LIKE ?', "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
+  end
+
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索
     temp = Notification.where(["visiter_id = ? and visited_id = ? and post_image_id = ? and action = ? ", current_user.id, user_id, id, 'like'])

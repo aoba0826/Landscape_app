@@ -10,6 +10,9 @@ class PostImagesController < ApplicationController
   def create
     @post_image = PostImage.new(image_params)
     @post_image.user_id = current_user.id
+    unless @post_image.star.presence
+      @post_image.star = 0
+    end
     if @post_image.save
        flash.now[:notice] = '投稿しました'
       redirect_to post_images_path
@@ -44,7 +47,7 @@ class PostImagesController < ApplicationController
 
   def search
     if params[:keyword].present?
-       @post_images = PostImage.where(['title LIKE ? or place LIKE ? or introduction LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%"]).page(params[:page]).per(12)
+       @post_images= PostImage.searching(params[:keyword]).page(params[:page]).per(12)
     else
       @post_images = PostImage.page(params[:page]).per(12)
       flash.now[:alert] = '未入力です。'
