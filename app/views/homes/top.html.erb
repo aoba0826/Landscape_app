@@ -3,6 +3,7 @@
 <div class="cotainer">
   <div class="row">
     <div class="col col-6">
+       <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
        <%= link_to 'ログイン' ,new_user_registration_path %>
        <%= link_to 'サインアップ',new_user_registration_path %>
     </div>

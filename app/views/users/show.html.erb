@@ -15,9 +15,12 @@
                   <p class="text-center">
                    フォロワー:<span id="btn-a<%= @user.id %>"><%= @user.follower_user.count %></span>  |  フォロー中:<span id="btn-b<%= @user.id %>"><%= @user.following_user.count %></span>
                   </p>
-              <% end %>
-              <div class="d-flex justify-content-center">
-                <%= link_to 'プロフィール編集',edit_user_path(@user.id),class:"btn btn-success mr-1" %><%= link_to "ログアウト", destroy_user_session_path, method: :delete,data: { confirm: 'ログアウトしてよろしいですか?' },class:"btn btn-danger" %>
+       <% end %>
+               <div class="d-flex justify-content-center">
+                   <% if @user.name != "guestuser" %>
+                    <%= link_to 'プロフィール編集',edit_user_path(@user.id),class:"btn btn-success mr-1" %>
+                   <% end %>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete,data: { confirm: 'ログアウトしてよろしいですか?' },class:"btn btn-danger" %>
               </div>
       <% else %>
              <p class="text-center"><strong><%= @user.nickname %></strong></p>

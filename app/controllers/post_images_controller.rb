@@ -1,6 +1,6 @@
 class PostImagesController < ApplicationController
-  before_action :set_post_image, except: [:new,:create,:index,:search]
-  before_action :set_task,except: [:new,:create,:edit]
+  before_action :set_post_image, except: [:new, :create, :index, :search]
+  before_action :set_task, except: [:new, :create, :edit]
 
   def new
     @user = current_user
@@ -14,7 +14,7 @@ class PostImagesController < ApplicationController
       @post_image.star = 0
     end
     if @post_image.save
-       flash.now[:notice] = '投稿しました'
+      flash.now[:notice] = '投稿しました'
       redirect_to post_images_path
     else
       flash.now[:alert] = '投稿できませんでした'
@@ -47,7 +47,7 @@ class PostImagesController < ApplicationController
 
   def search
     if params[:keyword].present?
-       @post_images= PostImage.searching(params[:keyword]).page(params[:page]).per(12)
+      @post_images = PostImage.searching(params[:keyword]).page(params[:page]).per(12)
     else
       @post_images = PostImage.page(params[:page]).per(12)
       flash.now[:alert] = '未入力です。'

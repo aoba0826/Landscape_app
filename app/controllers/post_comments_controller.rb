@@ -6,7 +6,7 @@ class PostCommentsController < ApplicationController
     @post_comment.user_id = current_user.id
     @post = @post_comment.post_image
     if @post_comment.save
-       flash.now[:notice] = 'コメントを投稿しました'
+      flash.now[:notice] = 'コメントを投稿しました'
       # 通知の作成
       @post.create_notification_comment!(current_user, @post_comment.id)
     else

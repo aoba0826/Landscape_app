@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name,:nickname, presence: true
+  validates :name, :nickname, presence: true
 
   has_one_attached :profile_image
   has_many :post_images, dependent: :destroy
@@ -14,6 +14,14 @@ class User < ApplicationRecord
 
   has_many :active_notifications,  class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+  
+  def self.guest
+    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+      user.nickname = "ゲストユーザー"
+    end
+  end
 
   def get_profile_image
     unless profile_image.attached?
@@ -48,7 +56,7 @@ class User < ApplicationRecord
 
   def create_notification_follow!(current_user)
     temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
-    return unless temp.blank?
+    return if temp.present?
 
     notification = current_user.active_notifications.new(
       visited_id: id,

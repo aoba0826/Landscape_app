@@ -8,7 +8,7 @@ class NotificationsController < ApplicationController
       notification.update(checked: true)
     end
 
-    @notifications = @notifications.page(params[:page]).per(15)
+    @notifications = @notifications.page(params[:page]).order(created_at: :desc).per(15)
   end
 
   def destroy_all

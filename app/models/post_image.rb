@@ -7,8 +7,8 @@ class PostImage < ApplicationRecord
   has_many   :notifications, dependent: :destroy
   has_many   :tasks, dependent: :destroy
 
-  validates :title, length: {maximum: 50}
-  validates :title,:place,:introduction,:image,presence: true
+  validates :title, length: { maximum: 50 }
+  validates :title, :place, :introduction, :image, presence: true
 
   def get_image
     unless image.attached?
@@ -23,7 +23,7 @@ class PostImage < ApplicationRecord
   end
 
   def self.searching(keyword)
-      self.where(['title LIKE ? or place LIKE ? or introduction LIKE ?', "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
+    where(['title LIKE ? or place LIKE ? or introduction LIKE ?', "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
   end
 
   def create_notification_like!(current_user)

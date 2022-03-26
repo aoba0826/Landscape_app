@@ -7,7 +7,6 @@ class LikesController < ApplicationController
 
     # 通知の作成
     @post_image.create_notification_like!(current_user)
-  
   end
 
   def destroy
@@ -15,6 +14,5 @@ class LikesController < ApplicationController
     like = Like.find_by(post_image_id: @post_image.id)
     like.user_id = current_user.id
     like.destroy
-   
   end
 end
