@@ -44,9 +44,10 @@ class PostImagesController < ApplicationController
 
   def search
     if params[:keyword].present?
-      @post_images = PostImage.where(['title LIKE ? or place LIKE ? or introduction LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%"]).page(params[:page]).per(12)
+       @post_images = PostImage.where(['title LIKE ? or place LIKE ? or introduction LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%"]).page(params[:page]).per(12)
     else
       @post_images = PostImage.page(params[:page]).per(12)
+      flash.now[:alert] = '未入力です。'
       render :index
     end
   end

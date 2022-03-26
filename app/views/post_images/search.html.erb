@@ -1,4 +1,10 @@
 <div class="container">
+  <% if @post_images.count == 0 %>
+    検索にマッチするものはありませんでした
+  <% else %>
+    <%= @post_images.count %>件ヒットしました
+  <% end %>
+   
   <div class="list">
     <%= render 'post_image_list',post_images: @post_images,task: @task%>
   </div>
