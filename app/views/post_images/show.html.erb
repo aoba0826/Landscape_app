@@ -8,12 +8,17 @@
       <div class="position">
         <div class="point d-flex align-items-center">
           <% if @post_image.user == current_user %>
+              <div id="likes_button<%= @post_image.id %>">
+                <%= render 'likes/likes_button',post_image: @post_image%>
+              </div>
+
               <%= link_to edit_post_image_path(@post_image.id) do %>
               <i class="fas fa-edit fa-2x m-2"></i>
               <% end %>
               <%= link_to post_image_path(@post_image.id), method: :delete ,data: { confirm: '削除してよろしいですか?' }  do %>
               <i class="fas fa-trash-alt fa-2x m-2"></i>
               <% end %>
+
           <% else %>
               <div id="likes_button<%= @post_image.id %>">
                 <%= render 'likes/likes_button',post_image: @post_image%>
@@ -22,7 +27,6 @@
                <div id="follow_button<%= @post_image.user.id %>">
                  <%= render 'relationships/follow_button',user: @post_image.user%>
                </div>
-
 
               <%= render 'tasks/task_botton',task: @task ,post_image: @post_image %>
           <% end %>
