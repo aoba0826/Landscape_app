@@ -1,0 +1,29 @@
+<% if users_follower.exists? %>
+     <p class="text-center"><span id="btn-a<%= current_user.id %>"><%= users_follower.count %></span>人フォロワー</p>
+    <% users_follower.each do |follower| %>
+      <div class="card p-0 mx-auto border shadow-lg d-flex justify-content-center ">
+        <div class="row g-0 ">
+          <div class="col-md-2 ps-5 d-flex align-items-center">
+            <%= render 'users/user_link',user: follower %>
+          </div>
+          <div class="col-md-4 my-4"><P class="text-center m-0 p-0"><%= follower.nickname %>さん</P></div>
+
+          <div class="col-md-3 d-flex align-items-center">
+            <div class="card-body p-0">
+              <p class="card-text m-0 p-0"><small>フォロー:</small><span id="btn-a<%= follower.id %>"><%= follower.following_user.count %></span></p>
+              <p class="card-text m-0 p-0"><small>フォロワー:</small><span id="btn-b<%= follower.id %>"><%= follower.follower_user.count %></span></p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class=" my-4 mx-0 p-0">
+              <div id="follow_button<%= follower.id %>">
+               <%= render 'relationships/follow_button',user: follower%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>ユーザーはいません</p>
+<% end %>

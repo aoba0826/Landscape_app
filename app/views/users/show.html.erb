@@ -28,8 +28,8 @@
              <p class="text-center">
              フォロワー:<span id="btn-a<%= @user.id %>"><%= @user.follower_user.count %></span>  |  フォロー中:<span id="btn-b<%= @user.id %>"><%= @user.following_user.count %></span>
              </p>
-             <div id="follow_button<%= @user.id %>">
-               <p class="text-center"><%= render 'relationships/follow_button',user: @user%></p>
+             <div class="d-flex justify-content-center" id="follow_button<%= @user.id %>">
+               <div><%= render 'relationships/follow_button',user: @user%></div>
              </div>
       <% end %>
     </div>
