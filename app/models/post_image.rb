@@ -6,6 +6,8 @@ class PostImage < ApplicationRecord
   has_many   :post_comments, dependent: :destroy
   has_many   :notifications, dependent: :destroy
   has_many   :tasks, dependent: :destroy
+  has_many :post_image_tags, dependent: :destroy
+  has_many :tags, through: :post_image_tags
 
   validates :title, length: { maximum: 50 }
   validates :title, :place, :introduction, :image, presence: true

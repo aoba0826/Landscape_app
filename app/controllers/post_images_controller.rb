@@ -8,13 +8,20 @@ class PostImagesController < ApplicationController
   end
 
   def create
-    @post_image = PostImage.new(image_params)
-    @post_image.user_id = current_user.id
-    unless @post_image.star.presence
-      @post_image.star = 0
+    post_image = PostImage.new(image_params)
+    post_image.user_id = current_user.id
+    unless post_image.star.presence
+      post_image.star = 0
     end
-    if @post_image.save
+    if post_image.save
       flash.now[:notice] = '投稿しました'
+      tags = Vision.get_image_data(post_image.image)
+      tags.each do |tag|
+        post_image.tags.save_tags(tag)
+        # tag_record = Tag.save_tags(tag)
+        # PostImageTag.create( post_image_id: post_image.id , tag_id: tag_record.id)
+      end
+
       redirect_to post_images_path
     else
       flash.now[:alert] = '投稿できませんでした'

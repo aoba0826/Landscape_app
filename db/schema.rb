@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_05_133418) do
+ActiveRecord::Schema.define(version: 2022_04_04_112851) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 2022_03_05_133418) do
     t.index ["user_id"], name: "index_post_comments_on_user_id"
   end
 
+  create_table "post_image_tags", force: :cascade do |t|
+    t.integer "post_image_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_image_id"], name: "index_post_image_tags_on_post_image_id"
+    t.index ["tag_id"], name: "index_post_image_tags_on_tag_id"
+  end
+
   create_table "post_images", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
@@ -86,6 +95,12 @@ ActiveRecord::Schema.define(version: 2022_03_05_133418) do
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
