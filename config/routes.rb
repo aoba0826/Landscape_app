@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
+  
+  get "search_tag"=>"post_images#search_tag"
 
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
@@ -19,7 +21,7 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
     get :search, on: :collection
   end
-
+ 
   resources :users do
     resource :relationships, only: [:create, :destroy]
   end

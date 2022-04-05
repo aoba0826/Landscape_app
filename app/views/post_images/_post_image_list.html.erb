@@ -14,7 +14,7 @@
 
         <div class="col-lg-1 d-flex align-items-center">
           <%= link_to post_image_path(post_image.id) do %>
-            <i class="far fa-comment"></i><%#= post_image.post_comments.count %></p>
+            <i class="far fa-comment"></i>
           <% end %>
         </div>
 
@@ -34,7 +34,19 @@
       </div>
 
       <div class="">
-        <p class="fs-6 fw-lighter  p-0 m-0 text-break text-c"><%= post_image.title %></p>
+        <small>
+          <p class="fs-6 fw-lighter  p-0 m-0 text-break text-c text-lowercase">
+            <%= post_image.title %>
+          </p>
+        </small>
+        <small>
+          <p class="fs-6 p-0 m-0 text-lowercase">
+              <i class="fas fa-tag"></i>
+              <% post_image.tags.each do |tag| %>
+                <%=link_to tag.name,search_tag_path(tag_id: tag.id) %>
+              <% end %>
+          </p>
+        </small>
       </div>
     </div>
   </div>

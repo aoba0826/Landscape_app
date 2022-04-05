@@ -1,5 +1,5 @@
 class PostImagesController < ApplicationController
-  before_action :set_post_image, except: [:new, :create, :index, :search]
+  before_action :set_post_image, except: [:new, :create, :index, :search,:search_tag]
   before_action :set_task, except: [:new, :create, :edit]
 
   def new
@@ -61,6 +61,13 @@ class PostImagesController < ApplicationController
       flash.now[:alert] = '未入力です。'
       render :index
     end
+  end
+
+  def search_tag
+    @tag_list=Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @post_images = @tag.post_images.page(params[:page]).per(12)
+    
   end
 
   private
