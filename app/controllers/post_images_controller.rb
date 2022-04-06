@@ -8,15 +8,15 @@ class PostImagesController < ApplicationController
   end
 
   def create
-    post_image = PostImage.new(image_params)
-    post_image.user_id = current_user.id
-    unless post_image.star.presence
-      post_image.star = 0
+    @post_image = PostImage.new(image_params)
+    @post_image.user_id = current_user.id
+    unless @post_image.star.presence
+      @post_image.star = 0
     end
-    if post_image.save
+    if @post_image.save
       flash.now[:notice] = '投稿しました'
-      tags = Vision.get_image_data(post_image.image)
-      post_image.save_tags(tags)
+      tags = Vision.get_image_data(@post_image.image)
+      @post_image.save_tags(tags)
 
       redirect_to post_images_path
     else
