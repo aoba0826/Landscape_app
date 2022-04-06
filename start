@@ -1,0 +1,26 @@
+
+[1mFrom:[0m /home/ec2-user/environment/Landscape_app/app/controllers/post_images_controller.rb:20 PostImagesController#create:
+
+    [1;34m10[0m: [32mdef[0m [1;34mcreate[0m
+    [1;34m11[0m:   post_image = [1;34;4mPostImage[0m.new(image_params)
+    [1;34m12[0m:   post_image.user_id = current_user.id
+    [1;34m13[0m:   [32munless[0m post_image.star.presence
+    [1;34m14[0m:     post_image.star = [1;34m0[0m
+    [1;34m15[0m:   [32mend[0m
+    [1;34m16[0m:   [32mif[0m post_image.save
+    [1;34m17[0m:     flash.now[[33m:notice[0m] = [31m[1;31m'[0m[31m投稿しました[1;31m'[0m[31m[0m
+    [1;34m18[0m:     tags = [1;34;4mVision[0m.get_image_data(post_image.image)
+    [1;34m19[0m:     tags.each [32mdo[0m |tag|
+ => [1;34m20[0m:       binding.pry
+    [1;34m21[0m:       post_image.tags.save_tags(tag)
+    [1;34m22[0m:       [1;34m# tag_record = Tag.save_tags(tag)[0m
+    [1;34m23[0m:       [1;34m# PostImageTag.create( post_image_id: post_image.id , tag_id: tag_record.id)[0m
+    [1;34m24[0m:     [32mend[0m
+    [1;34m25[0m: 
+    [1;34m26[0m:     redirect_to post_images_path
+    [1;34m27[0m:   [32melse[0m
+    [1;34m28[0m:     flash.now[[33m:alert[0m] = [31m[1;31m'[0m[31m投稿できませんでした[1;31m'[0m[31m[0m
+    [1;34m29[0m:     render [33m:new[0m
+    [1;34m30[0m:   [32mend[0m
+    [1;34m31[0m: [32mend[0m
+

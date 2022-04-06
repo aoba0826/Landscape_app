@@ -67,4 +67,11 @@ class PostImage < ApplicationRecord
     notification.checked = true if notification.visiter_id == notification.visited_id
     notification.save if notification.valid?
   end
+  
+  def save_tags(tags)
+    tags.each do |tag|
+    tag = Tag.find_or_create_by(name: tag)
+    post_image_tags.find_or_create_by(tag_id: tag.id)
+    end
+  end
 end

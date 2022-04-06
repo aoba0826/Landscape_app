@@ -48,7 +48,17 @@
           <div class="row h-25">
             <div class="col">
               <div class=""><h5 class="text-break"><%= @post_image.title %></h5></div>
-              <div><%=render 'post_images/post_image_star',post_image: @post_image %></div>
+              <div class="d-inline-flex mr-2 d-flex align-items-center">
+                <%=render 'post_images/post_image_star',post_image: @post_image %>
+              </div>
+              <div class="d-inline-flex d-flex align-items-center">
+                <i class="fas fa-tag "></i>
+                <% @post_image.tags.each do |tag| %>
+                  <%=link_to tag.name,search_tag_path(tag_id: tag.id),class:"text-lowercase m-1" %>
+                <% end %>
+              </div>
+
+
                <div class="m-2"><P class="text-break"><%= @post_image.place %></P></div>
               <div class="m-2"><P class="text-break"><small class="text-muted"><%= @post_image.introduction %></small></P></div>
             </div>
@@ -61,7 +71,7 @@
                   <%= render 'post_comments/post_comments',post_image: @post_image %>
                 </div>
               </div>
-              <p class="m-2">アイデアについて質問をしたり、感想を伝えましょう！</p>
+              <p class="m-2">風景について質問をしたり、感想を伝えましょう！</p>
                 <div class="">
                   <%= render 'post_comments/post_comments_form',post_image: @post_image,post_comment: @post_comment %>
                 </div>
