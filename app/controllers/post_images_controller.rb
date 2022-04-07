@@ -46,7 +46,7 @@ class PostImagesController < ApplicationController
   def update
     @post_image.update(image_params)
     tags = Vision.get_image_data(@post_image.image)
-      @post_image.save_tags(tags)
+    @post_image.save_tags(tags)
     @post_comment = PostComment.new
     render :show
   end
