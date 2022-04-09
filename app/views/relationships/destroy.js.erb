@@ -1,5 +1,6 @@
 console.log("user_id: <%= @users.id %>");
+
+$("#followed").html("<%= j(render 'users/followed',users_followed: @users.following_user) %>");
 $("#btn-a<%= @user.id %>").html("<%= @user.following_user.count %>");
 $("#btn-b<%= @user.id %>").html("<%= @user.follower_user.count %>");
-$("#followed").html("<%= j(render 'users/followed',users_followed: @users.following_user) %>");
 $("#follow_button<%= @user.id %>").html("<%= j(render 'relationships/follow_button',user: @user)%> ");
