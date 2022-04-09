@@ -63,9 +63,12 @@ class PostImagesController < ApplicationController
 
   def search_tag
     @tag_list=Tag.all
-    @tag = Tag.find(params[:tag_id])
-    @post_images = @tag.post_images.page(params[:page]).per(12)
-
+    unless  params[:tag_id].blank?
+      @tag = Tag.find(params[:tag_id])
+      @post_images = @tag.post_images.page(params[:page]).per(12)
+    else
+      render :search_tag
+    end
   end
 
   private

@@ -19,12 +19,16 @@
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
 
-        <li class="nav-item  d-flex align-items-center">
+        <li class="nav-item  mx-3 d-flex align-items-center">
           <%= link_to 'Home', post_images_path,class:'p-3 mb-2 rounded-pill btn btn-outline-danger' %>
         </li>
 
-        <li class="nav-item mx-5 d-flex align-items-center">
+        <li class="nav-item  mx-3 d-flex align-items-center">
            <%= link_to '新規投稿', new_post_image_path,class:"p-3 mb-2 rounded-pill btn btn-outline-danger"%>
+        </li>
+        
+        <li class="nav-item mx-3 d-flex align-items-center">
+          <%= link_to "タグ検索",search_tag_path,class:"p-3 mb-2 rounded-pill btn btn-outline-danger"%>
         </li>
 
          <%= form_with url: search_post_images_path,class: "d-flex m-3", method: :get, local: true do |f| %>
@@ -45,6 +49,7 @@
         <li class="nav-item ml-2 d-flex align-items-center">
           <%= render 'users/user_link',user: current_user %>
         </li>
+
 
         <% else %>
 

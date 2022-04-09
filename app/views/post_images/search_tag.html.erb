@@ -12,8 +12,12 @@
   </div>
 </div>
 
+  <% unless @post_images.blank? %>
+    <div class="list">
+      <%= render 'post_images/post_image_list',post_images: @post_images,task: @task %>
+    </div>
+  <% else %>
+  <p class="text-center">タグ一覧からタグを選択して下さい。</p>
+  <% end %>
 
-  <div class="list">
-    <%= render 'post_images/post_image_list',post_images: @post_images,task: @task %>
-  </div>
 </div>
