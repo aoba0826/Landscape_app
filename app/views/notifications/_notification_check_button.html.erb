@@ -2,7 +2,7 @@
   <% if unchecked_notifications.any? %>
     <span class=" fa-stack ">
       <i class="far fa-bell fa-2x fa-stack-1x"></i>
-      <span class="fa-layers-counter fa-3x" style="background:Tomato"><%= current_user.passive_notifications.count %></span>
+      <span class="fa-layers-counter fa-3x" style="background:Tomato"><%= unchecked_notifications.count %></span>
     </span>
     </span>
   <% else %>
