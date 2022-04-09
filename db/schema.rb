@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 2022_04_04_112851) do
     t.string "title_task", null: false
     t.string "task_place", null: false
     t.text "content", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_image_id"], name: "index_tasks_on_post_image_id"

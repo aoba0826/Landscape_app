@@ -16,3 +16,10 @@ ja:
         email: "メールアドレス"
         password: "パスワード"
         
+  enums:
+    task:
+      status:
+        planning: "計画中"
+        in_progress: "進行中"
+        closed: "達成"
+        

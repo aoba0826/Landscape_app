@@ -18,7 +18,10 @@ class UsersController < ApplicationController
   end
 
   def task_list
-    @tasks = Task.where(user_id: @user.id).page(params[:page]).per(4).order(id: :DESC)
+    @task_planning = Task.where(user_id: @user.id,status: 0).page(params[:page]).per(4).order(id: :DESC)
+    @task_in_progress = Task.where(user_id: @user.id,status: 1).page(params[:page]).per(4).order(id: :DESC)
+    @task_crosed = Task.where(user_id: @user.id,status: 2).page(params[:page]).per(4).order(id: :DESC)
+    
     redirect_to post_images_path unless current_user.id == @user.id
   end
 

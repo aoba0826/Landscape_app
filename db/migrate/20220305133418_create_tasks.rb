@@ -6,6 +6,7 @@ class CreateTasks < ActiveRecord::Migration[6.1]
       t.string :title_task,      null: false
       t.string :task_place,      null: false
       t.text :content,           null: false
+      t.integer :status, default: 0, null: false
 
       t.timestamps
     end

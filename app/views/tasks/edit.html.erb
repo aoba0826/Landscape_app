@@ -6,20 +6,21 @@
     </div>
     <div class="col">
       <div class="p-5">
-        <%= form_with model:@task,url:task_path,method: :put,local:true do |f| %>
+        <%= form_with model:@task,url:task_path,method: :patch,local:true do |f| %>
       <%= f.label :"目標" %><br>
       <%= f.text_field :title_task,autofocus: true, autocomplete: "title_task" ,class:"form-control" %><br>
-      
+
       <%= f.label :"場所" %><br>
       <%= f.text_field :task_place,autocomplete: "task_place" ,class:"form-control" %><br>
-      
+
       <%= f.label :"やりたい事" %><br>
       <%= f.text_area :content, rows: '5' ,class:"form-control"%><br>
-      
-      <%= f.submit '投稿' %>
-      
+
+      <%= f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]} %>
+      <%= f.submit "変更" %>
+
       <% end %>
-       
+
       </div>
     </div>
   </div>
