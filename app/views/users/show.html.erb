@@ -13,7 +13,7 @@
              <p class="text-center">e-mail:<%= @user.email %></p>
              <%= link_to follow_list_user_path do %>
                   <p class="text-center">
-                   フォロワー:<span id="btn-a<%= @user.id %>"><%= @user.follower_user.count %></span>  |  フォロー中:<span id="btn-b<%= @user.id %>"><%= @user.following_user.count %></span>
+                   フォロワー:<span id="btn-b<%= @user.id %>"><%= @user.follower_user.count %></span>  |  フォロー中:<span id="btn-a<%= @user.id %>"><%= @user.following_user.count %></span>
                   </p>
        <% end %>
                <div class="d-flex justify-content-center">
@@ -26,7 +26,7 @@
              <p class="text-center"><strong><%= @user.nickname %></strong></p>
              <p class="text-center">photos:<%= @user.post_images.count %></p>
              <p class="text-center">
-             フォロワー:<span id="btn-a<%= @user.id %>"><%= @user.follower_user.count %></span>  |  フォロー中:<span id="btn-b<%= @user.id %>"><%= @user.following_user.count %></span>
+             フォロワー:<span id="btn-b<%= @user.id %>"><%= @user.follower_user.count %></span>  |  フォロー中:<span id="btn-a<%= @user.id %>"><%= @user.following_user.count %></span>
              </p>
              <div class="d-flex justify-content-center" id="follow_button<%= @user.id %>">
                <div><%= render 'relationships/follow_button',user: @user%></div>
