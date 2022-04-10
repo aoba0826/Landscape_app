@@ -16,6 +16,12 @@
       <%= f.label :"やりたい事" %><br>
       <%= f.text_area :content, rows: '5' ,class:"form-control"%><br>
 
+      <%= f.label :start_time %>
+      <%= f.date_select :start_time %>
+
+      <%= f.label :end_time %>
+      <%= f.date_select :end_time %>
+
       <%= f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]} %>
       <%= f.submit "変更" %>
 

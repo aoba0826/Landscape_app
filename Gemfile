@@ -62,6 +62,7 @@ gem 'bootstrap5-kaminari-views', '~> 0.0.1'
 gem 'jquery-rails'
 gem 'rails-i18n'
 gem 'enum_help'
+gem "simple_calendar", "~> 2.4"
 
 group :development do
   gem 'rubocop',             require: false

@@ -1,2 +1,0 @@
-class TodoCalendarsController < ApplicationController
-end

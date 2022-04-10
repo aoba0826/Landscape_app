@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, except: [:create]
+  before_action :set_task, except: [:create,:task_calender]
   def create
     @task = Task.new(task_params)
     @task.user_id = current_user.id
@@ -25,6 +25,10 @@ class TasksController < ApplicationController
     redirect_to request.referer
   end
 
+  def task_calender
+    @tasks = Task.where(user_id: current_user.id)
+  end
+
   private
 
   def set_task
@@ -32,6 +36,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:user_id, :post_image_id, :title_task, :task_place, :content,:status)
+    params.require(:task).permit(:user_id, :post_image_id, :title_task, :task_place, :content,:status,:start_time,:end_time)
   end
 end

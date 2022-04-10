@@ -1,0 +1,14 @@
+<div class="container w-75">
+  <%#= render "simple_calendar/calendar"%>
+  <%= month_calendar events: @tasks  do |date, tasks| %>
+    <%= date.day %>
+
+    <% tasks.each do |task| %>
+      <div>
+        <%= link_to task.title_task, task_path(task.id) %>
+      </div>
+    <% end %>
+
+  <% end %>
+
+</div>
