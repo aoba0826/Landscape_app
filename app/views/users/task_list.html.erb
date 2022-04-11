@@ -9,8 +9,11 @@
     <li class="nav-item">
       <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">達成済</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" id="new_task-tab" data-toggle="tab" href="#new_task" role="tab" aria-controls="new_task" aria-selected="false">新規投稿</a>
+    </li>
   </ul>
-  
+
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <div class="">
@@ -27,5 +30,34 @@
     　　<%= render 'tasks/task_lists',tasks: @task_crosed %>
   　　</div>
     </div>
-</div>
+    <div class="tab-pane fade" id="new_task" role="tabpanel" aria-labelledby="new_task-tab">
+      <div class="">
+        　<%= form_with model:@task,url:tasks_path,method: :post,local:true do |f|%>
+
+        　<%= f.label :"目標" %><br>
+          <%= f.text_field :title_task,autofocus: true, autocomplete: "title_task" ,class:"form-control" %><br>
+
+          <%= f.label :"場所" %><br>
+          <%= f.text_field :task_place,autocomplete: "task_place" ,class:"form-control" %><br>
+
+          <%= f.label :"やりたい事" %><br>
+          <%= f.text_area :content, rows: '5' ,class:"form-control"%><br>
+
+          <%= f.label :start_time %>
+          <%= f.date_field :start_time %>
+
+          <%= f.label :end_time %>
+          <%= f.date_field :end_time %>
+
+          <%= f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]} %>
+　　　　
+　　　　　<%= f.label :"画像" %>
+          <%= f.file_field :image,accept: "image/*" %><br/>
+          
+          <%= f.submit "投稿" %>
+
+    　　<% end %>
+  　　</div>
+    </div>
+  </div>
 </div>

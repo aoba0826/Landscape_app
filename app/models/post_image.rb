@@ -5,7 +5,6 @@ class PostImage < ApplicationRecord
   has_many   :likes, dependent: :destroy
   has_many   :post_comments, dependent: :destroy
   has_many   :notifications, dependent: :destroy
-  has_many   :tasks, dependent: :destroy
   has_many :post_image_tags, dependent: :destroy
   has_many :tags, through: :post_image_tags
 

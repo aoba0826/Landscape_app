@@ -2,11 +2,11 @@
 <div class="container">
   <div class="row shadow  mb-5 bg-body rounded-3">
     <div class="col ">
-      <%=  image_tag @task.post_image.get_image, size: "500x500" ,class:"m-3 rounded-circle " %>
+      <%=  image_tag @task.task_image, size: "500x500" ,class:"m-3 rounded-circle " %>
     </div>
     <div class="col">
       <div class="p-5">
-        <%= form_with model:@task,url:task_path,method: :patch,local:true do |f| %>
+      <%= form_with model:@task,url:task_path,method: :patch,local:true do |f| %>
       <%= f.label :"目標" %><br>
       <%= f.text_field :title_task,autofocus: true, autocomplete: "title_task" ,class:"form-control" %><br>
 
@@ -17,10 +17,10 @@
       <%= f.text_area :content, rows: '5' ,class:"form-control"%><br>
 
       <%= f.label :start_time %>
-      <%= f.date_select :start_time %>
+      <%= f.date_field :start_time %>
 
       <%= f.label :end_time %>
-      <%= f.date_select :end_time %>
+      <%= f.date_field :end_time %>
 
       <%= f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]} %>
       <%= f.submit "変更" %>
