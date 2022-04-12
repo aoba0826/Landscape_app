@@ -5,7 +5,10 @@
 
     <% tasks.each do |task| %>
       <div>
-        <%= link_to task.title_task, task_path(task.id)%>
+        <%= link_to schedule_days_path({schedule_day:{schedule_day: date,task_id: task.id}}), method: :post do %>
+          <%= task.title_task %>
+        <% end %>
+
       </div>
     <% end %>
 
