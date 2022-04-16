@@ -3,16 +3,13 @@ class ScheduleDaysController < ApplicationController
     @schedule_day = current_user.schedule_days.find_or_create_by(schedule_day_params)
     @day_task = DayTask.new
     @day_tasks = current_user.day_tasks.all
-    render :index
+    render :show
   end
 
-  def index
-    @day_task = DayTask.new
-    @day_tasks = current_user.day_tasks.all
-  end
-  
   def show
-  
+    @schedule_day = ScheduleDay.find(params[:id])
+    @day_task = DayTask.new
+    @day_tasks = current_user.day_tasks.all.order(start_time: :ASC)
   end
 
   def destroy

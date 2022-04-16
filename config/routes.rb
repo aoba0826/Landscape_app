@@ -32,9 +32,8 @@ Rails.application.routes.draw do
     end
   end
   resources :tasks, only: [:show, :edit, :create, :update, :destroy]
-  resources :schedule_days ,only: [:create,:index,:show,:destroy] do
+  resources :schedule_days ,only: [:create,:show,:destroy]
     resources :day_tasks,only: [:create,:destroy]
-  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

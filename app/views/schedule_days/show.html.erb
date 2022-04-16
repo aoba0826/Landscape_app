@@ -12,7 +12,7 @@
       <%= f.time_select :start_time, class: 'form-control' %>
       <%= f.time_select :end_time,class: "form-control" %>
   </div>
-  <%#= f.hidden_field :schedule_day,:value => @schedule_day.id %>
+  <%= f.hidden_field :schedule_day_id,:value => @schedule_day.id %>
   <div class="d-flex justify-content-center">
       <%= f.submit '投稿',class:"btn btn-primary rounded-pill m-3 " %>
   </div>
