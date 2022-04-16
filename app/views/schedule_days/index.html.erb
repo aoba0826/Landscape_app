@@ -1,2 +1,30 @@
 <p><%= @schedule_day.task.title_task %></p>
-<p><%= @schedule_day.schedule_day %></p>
+<p><%= @schedule_day.schedule_day.strftime("%Y年 %m月 %d日") %></p>
+
+
+
+<%= form_with model:@day_task ,url:day_tasks_path(@schedule_day.id),method: :post, local:true do |f| %>
+  <div class="field ">
+    <%= f.label :"タスク" %><br/>
+    <%= f.text_field :task_contents ,autofocus: true ,autocomplete: "title",class:"form-control" %><br/>
+  </div>
+  <div class="field">
+      <%= f.time_select :start_time, class: 'form-control' %>
+      <%= f.time_select :end_time,class: "form-control" %>
+  </div>
+  <%#= f.hidden_field :schedule_day,:value => @schedule_day.id %>
+  <div class="d-flex justify-content-center">
+      <%= f.submit '投稿',class:"btn btn-primary rounded-pill m-3 " %>
+  </div>
+<% end %>
+
+
+<% if @day_tasks.exists? %>
+    <% @day_tasks.each do |task| %>
+      <%= task.task_contents %>
+      <%= task.start_time %>
+      <%= task.end_time %>
+    <% end %>
+<% else %>
+ <p>naiyo</p>
+<% end %>

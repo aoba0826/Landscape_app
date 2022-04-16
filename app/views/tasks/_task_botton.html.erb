@@ -1,4 +1,5 @@
 <%= form_with model:task,url:tasks_path,method: :post,local:true do |f|%>
+  <%= f.hidden_field :task_image,:value => post_image.i %>
   <%= f.hidden_field :title_task,:value => post_image.title %>
   <%= f.hidden_field :task_place,:value => post_image.place %>
   <%= f.hidden_field :content,:value => post_image.introduction %>
@@ -6,4 +7,4 @@
     <i class="far fa-address-book fa-2x ml-1 "></i>
   <% end %>
 <% end %>
-<%= hidden_field_tag :task_image, post_image.id %>
+<%= hidden_field_tag :task_image, post_image %>
