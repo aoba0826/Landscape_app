@@ -7,6 +7,11 @@ class DayTasksController < ApplicationController
     redirect_to schedule_day_path(@day_task.schedule_day_id)
   end
 
+  def destroy
+    @day_task = DayTask.find(params[:id])
+    @day_task.destroy
+    redirect_to schedule_day_path(@day_task.schedule_day_id)
+  end
   private
 
   def day_task_params
