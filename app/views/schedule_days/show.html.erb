@@ -9,7 +9,7 @@
     <%= f.text_field :task_contents ,autofocus: true ,autocomplete: "title",class:"form-control" %><br/>
   </div>
   <div class="field">
-      <%= f.time_select :start_time, class: 'form-control' %>
+      <%= f.time_select :start_time,class: 'form-control' %>
       <%= f.time_select :end_time,class: "form-control" %>
   </div>
   <%= f.hidden_field :schedule_day_id,:value => @schedule_day.id %>
