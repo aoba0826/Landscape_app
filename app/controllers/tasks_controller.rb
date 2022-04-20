@@ -1,11 +1,13 @@
 class TasksController < ApplicationController
   before_action :set_task, except: [:create,:task_calender]
   def create
-    post_image = PostImage.find(params[:task_image])
-    @task = Task.new(task_params)
-    @task.task_image.attach(post_image.image.blob)
-    @task.user_id = current_user.id
-    @task.save
+    @task = current_user.tasks.new(task_params)
+      unless @task.task_image.
+        present?
+        post_image = PostImage.find(params[:task_image])
+        @task.task_image.attach(post_image.image.blob)
+      end
+      @task.save
     redirect_to task_list_user_path(@task.user.id)
   end
 
@@ -38,6 +40,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:user_id,:title_task, :task_place, :content,:status,:start_time,:end_time,:task_image)
+    params.require(:task).permit(:user_id,:title_task,:task_place,:content,:status,:start_time,:end_time,:task_image)
   end
 end

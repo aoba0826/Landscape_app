@@ -52,7 +52,7 @@
           <%= f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]} %>
 　　　　
 　　　　　<%= f.label :"画像" %>
-          <%= f.file_field :image,accept: "image/*" %><br/>
+          <%= f.file_field :task_image,accept: "image/*" %><br/>
           
           <%= f.submit "投稿" %>
 
