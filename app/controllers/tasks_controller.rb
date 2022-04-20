@@ -2,8 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, except: [:create,:task_calender]
   def create
     @task = current_user.tasks.new(task_params)
-      unless @task.task_image.
-        present?
+      unless @task.task_image.present?
         post_image = PostImage.find(params[:task_image])
         @task.task_image.attach(post_image.image.blob)
       end
