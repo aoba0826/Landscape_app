@@ -8,7 +8,7 @@ class PostImagesController < ApplicationController
   end
 
   def create
-    @post_image = current_user.post_image.new(image_params)
+    @post_image = current_user.post_images.new(image_params)
     unless @post_image.star.presence
       @post_image.star = 0
     end
