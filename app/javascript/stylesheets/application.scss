@@ -2,6 +2,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+
 .box {
    height: 100px;
    overflow: auto;
@@ -91,3 +92,10 @@ footer {
   bottom: 0;
 }
 
+.table.table-striped {
+      table-layout: fixed;
+}
+
+div.container.w-75 > div > table > tbody > tr {
+  height: 100px;
+}

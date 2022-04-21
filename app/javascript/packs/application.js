@@ -13,11 +13,7 @@ import "popper.js";
 import "bootstrap";
 import "script.js"
 
-import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
-import "jquery";
-import "popper.js";
-import "bootstrap";
 import "../stylesheets/application"
 
 window.$ = window.jQuery = require('jquery');
