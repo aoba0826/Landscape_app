@@ -99,3 +99,10 @@ footer {
 div.container.w-75 > div > table > tbody > tr {
   height: 100px;
 }
+
+.thumb-300 {
+	height: 250px;
+	width: 100%;
+	object-fit: cover;
+  object-position: 50% 50%;
+}
