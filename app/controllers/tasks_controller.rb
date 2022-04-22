@@ -3,11 +3,15 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.new(task_params)
       unless @task.task_image.present?
-        post_image = PostImage.find(params[:task_image])
-        @task.task_image.attach(post_image.image.blob)
+        if params[:task_image].present?
+           post_image = PostImage.find(params[:task_image])
+           @task.task_image.attach(post_image.image.blob)
+         else
+           redirect_to task_list_user_path(current_user.id)
+        end
       end
       @task.save
-    redirect_to task_list_user_path(@task.user.id)
+    redirect_to task_list_user_path(current_user.id)
   end
 
   def show

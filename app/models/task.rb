@@ -3,6 +3,7 @@ class Task < ApplicationRecord
   has_many :schedule_days, dependent: :destroy
 
   has_one_attached :task_image
+  validates :title_task,:task_place,:content,:status,:task_image,presence: true
 
   def get_task_image
     unless task_image.attached?

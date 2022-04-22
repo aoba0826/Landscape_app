@@ -1,6 +1,8 @@
 class DayTask < ApplicationRecord
   belongs_to :user
   belongs_to :schedule_day
+  
+  validates :task_contents,:start_time,:end_time, presence: true
 
   def set_the_day_implement
     year = self.schedule_day.schedule_day.year
