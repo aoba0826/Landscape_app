@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :edit, :update] do
     member do
-      get :task_list
       get :follow_list
     end
   end
@@ -31,9 +30,9 @@ Rails.application.routes.draw do
       delete 'destroy_all'
     end
   end
-  resources :tasks, only: [:show, :edit, :create, :update, :destroy]
+  resources :tasks, only: [:edit, :index, :create, :update, :destroy]
   resources :schedule_days ,only: [:create,:show,:destroy]
-  resources :day_tasks,only: [:create,:destroy]
+  resources :day_tasks,only: [:create,:destroy,:show]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

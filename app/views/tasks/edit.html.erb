@@ -7,6 +7,7 @@
     <div class="col">
       <div class="p-5">
       <%= form_with model:@task,url:task_path,method: :patch,local:true do |f| %>
+      <%= render 'layouts/error_message', model: f.object %>
       <%= f.label :"目標" %><br>
       <%= f.text_field :title_task,autofocus: true, autocomplete: "title_task" ,class:"form-control" %><br>
 

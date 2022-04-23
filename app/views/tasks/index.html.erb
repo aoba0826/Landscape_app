@@ -1,4 +1,5 @@
 <div class="container m-auto ">
+  <%= render 'layouts/error_message', model: @task %>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">計画中</a>
@@ -34,7 +35,6 @@
       <div class="">
 
         　<%= form_with model:@task,url:tasks_path,method: :post,local:true do |f|%>
-          <%= render 'layouts/error_message', model: f.object %>
         　<%= f.label :"目標" %><br>
           <%= f.text_field :title_task,autofocus: true, autocomplete: "title_task" ,class:"form-control" %><br>
 

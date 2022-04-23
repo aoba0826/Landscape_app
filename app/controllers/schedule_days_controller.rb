@@ -3,7 +3,7 @@ class ScheduleDaysController < ApplicationController
     @schedule_day = current_user.schedule_days.find_or_create_by(schedule_day_params)
     @day_task = DayTask.new
     @day_tasks = current_user.day_tasks.where(schedule_day_id: @schedule_day.id).order(start_time: :ASC)
-    render :show
+    redirect_to 
   end
 
   def show
