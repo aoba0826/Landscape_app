@@ -3,14 +3,17 @@ class DayTasksController < ApplicationController
   def create
     @day_task = current_user.day_tasks.new(day_task_params)
     @day_task.set_the_day_implement
-    @day_task.save
-    redirect_to schedule_day_path(@day_task.schedule_day_id)
+    @day_tasks = current_user.day_tasks.where(schedule_day_id: @day_task.schedule_day.id).order(start_time: :ASC)
+    if @day_task.save
+    else
+      render :error
+    end
   end
 
   def destroy
     @day_task = DayTask.find(params[:id])
     @day_task.destroy
-    redirect_to schedule_day_path(@day_task.schedule_day_id)
+    @day_tasks = current_user.day_tasks.where(schedule_day_id: @day_task.schedule_day.id).order(start_time: :ASC)
   end
   private
 

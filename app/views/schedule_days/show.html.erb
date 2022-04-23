@@ -4,68 +4,12 @@
   <p class="text-center"><%= @schedule_day.schedule_day.strftime("%Y年 %m月 %d日") %></p>
   <div class="row">
     <div class="col">
-      <%= form_with model:@day_task ,url:day_tasks_path(@schedule_day.id),method: :post, local:true do |f| %>
-        <div class="field ">
-          <%= f.label :"タスク" %><br/>
-          <%= f.text_field :task_contents ,autofocus: true ,autocomplete: "title",class:"form-control" %><br/>
-        </div>
-        <div class="field">
-            <%= f.label :"開始時間" %>
-            <%= f.time_select :start_time,class: 'form-control' %>
-            <%= f.label :"終了時間" %>
-            <%= f.time_select :end_time,class: "form-control" %>
-        </div>
-        <%= f.hidden_field :schedule_day_id,:value => @schedule_day.id %>
-        <div class="d-flex justify-content-center">
-            <%= f.submit '投稿',class:"btn btn-primary rounded-pill m-3 " %>
-        </div>
-        <% end %>
+      <%= render 'day_tasks/day_task_form',day_task: @day_task,schedule_day: @schedule_day %>
     </div>
     <div class="col">
-      <% if @day_tasks.exists? %>
-        <div class="row">
-          <div class="col col-7">
-            <tr>
-              <% @day_tasks.each do |task| %>
-                <td>
-                  <strong>
-                    <p class="text-center p-0 m-0"><%= task.task_contents %></p>
-                  </strong>
-                </td>
-              <% end %>
-            </tr>
-          </div>
-          <div class="col col-4">
-            <tr>
-              <% @day_tasks.each do |task| %>
-                <td>
-                  <strong>
-                    <p class="text-center p-0 m-0">
-                      <%= task.start_time.strftime("%H:%M") %>→<%= task.end_time.strftime("%H:%M") %>
-                    </p>
-                  </strong>
-                </td>
-              <% end %>
-            </tr>
-          </div>
-          <div class="col col-1">
-            <tr>
-              <% @day_tasks.each do |task| %>
-                <td>
-                  <strong>
-                    <%= link_to day_task_path(task.id),method: :delete do %>
-                      <i class="fas fa-trash"></i>
-                    <% end %>
-                  </strong>
-                </td>
-              <% end %>
-            </tr>
-          </div>
-        </div>
-      <% else %>
-        <p>1日のタスクを洗い出してみましょう</p>
-      <% end %>
-    </div>
+      <div id="day_task_index">
+        <%= render 'day_tasks/day_task_index',day_tasks: @day_tasks %>
+      </div>
   </div>
 </div>
 

@@ -1,0 +1,43 @@
+<% if day_tasks.exists? %>
+<div class="row">
+          <div class="col col-7">
+            <tr>
+              <% day_tasks.each do |task| %>
+                <td>
+                  <strong>
+                    <p class="text-center p-0 m-0"><%= task.task_contents %></p>
+                  </strong>
+                </td>
+              <% end %>
+            </tr>
+          </div>
+          <div class="col col-4">
+            <tr>
+              <% day_tasks.each do |task| %>
+                <td>
+                  <strong>
+                    <p class="text-center p-0 m-0">
+                      <%= task.start_time.strftime("%H:%M") %>→<%= task.end_time.strftime("%H:%M") %>
+                    </p>
+                  </strong>
+                </td>
+              <% end %>
+            </tr>
+          </div>
+          <div class="col col-1">
+            <tr>
+              <% day_tasks.each do |task| %>
+                <td>
+                  <strong>
+                    <%= link_to day_task_path(task.id),method: :delete ,remote: true do %>
+                      <i class="fas fa-trash"></i>
+                    <% end %>
+                  </strong>
+                </td>
+              <% end %>
+            </tr>
+          </div>
+        </div>
+      <% else %>
+        <p>1日のタスクを洗い出してみましょう</p>
+      <% end %>
