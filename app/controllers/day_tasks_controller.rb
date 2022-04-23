@@ -4,8 +4,7 @@ class DayTasksController < ApplicationController
     @day_task = current_user.day_tasks.new(day_task_params)
     @day_task.set_the_day_implement
     @day_tasks = current_user.day_tasks.where(schedule_day_id: @day_task.schedule_day.id).order(start_time: :ASC)
-    if @day_task.save
-    else
+    unless  @day_task.save
       render :error
     end
   end
