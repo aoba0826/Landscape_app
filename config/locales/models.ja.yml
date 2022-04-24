@@ -15,4 +15,10 @@ ja:
         image: 画像
       post_comment:
         comment: コメント
-    
+      task:
+        title_task: 目標
+        task_place: 場所
+        content: やりたい事
+        task_image: 画像
+      day_task:
+        task_contents: タスク
