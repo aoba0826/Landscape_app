@@ -1,5 +1,5 @@
 class PostImagesController < ApplicationController
-  before_action :set_post_image, except: [:new, :create, :index, :search,:search_tag]
+  before_action :set_post_image, except: [:new, :create, :index, :search, :search_tag]
   before_action :set_task, except: [:new, :create, :edit]
 
   def new
@@ -61,12 +61,12 @@ class PostImagesController < ApplicationController
   end
 
   def search_tag
-    @tag_list=Tag.all
-    unless  params[:tag_id].blank?
+    @tag_list = Tag.all
+    if params[:tag_id].blank?
+      render :search_tag
+    else
       @tag = Tag.find(params[:tag_id])
       @post_images = @tag.post_images.page(params[:page]).per(12)
-    else
-      render :search_tag
     end
   end
 

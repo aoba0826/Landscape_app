@@ -1,17 +1,17 @@
 class TasksController < ApplicationController
-  before_action :set_task, except: [:create,:task_calender,:index]
+  before_action :set_task, except: [:create, :task_calender, :index]
   def create
     @task = current_user.tasks.new(task_params)
-      unless @task.task_image.present? || !params[:task_image]
-        post_image = PostImage.find(params[:task_image])
-        @task.task_image.attach(post_image.image.blob)
-      end
-      if @task.save
-          redirect_to tasks_path
-      else
-        set_task_index
-        render :index
-      end
+    unless @task.task_image.present? || !params[:task_image]
+      post_image = PostImage.find(params[:task_image])
+      @task.task_image.attach(post_image.image.blob)
+    end
+    if @task.save
+      redirect_to tasks_path
+    else
+      set_task_index
+      render :index
+    end
   end
 
   def index
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-       set_task_index
+      set_task_index
       render :index
     else
       render :edit
@@ -54,6 +54,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:user_id,:title_task,:task_place,:content,:status,:start_time,:end_time,:task_image)
+    params.require(:task).permit(:user_id, :title_task, :task_place, :content, :status, :start_time, :end_time, :task_image)
   end
 end

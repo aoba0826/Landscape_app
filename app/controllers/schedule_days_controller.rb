@@ -15,6 +15,6 @@ class ScheduleDaysController < ApplicationController
   private
 
   def schedule_day_params
-    params.require(:schedule_day).permit(:task_id,:schedule_day)
+    params.require(:schedule_day).permit(:task_id, :schedule_day)
   end
 end

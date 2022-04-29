@@ -13,12 +13,12 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :schedule_days, dependent: :destroy
   has_many :day_tasks, dependent: :destroy
-  
+
   has_many :active_notifications,  class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
-  
+
   def self.guest
-    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
+    find_or_create_by!(name: 'guestuser', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
       user.nickname = "ゲストユーザー"

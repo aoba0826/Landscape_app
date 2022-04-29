@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
 
-  get "search_tag"=>"post_images#search_tag"
-  get "task_calender"=>"tasks#task_calender"
+  get "search_tag" => "post_images#search_tag"
+  get "task_calender" => "tasks#task_calender"
 
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
@@ -31,8 +31,8 @@ Rails.application.routes.draw do
     end
   end
   resources :tasks, only: [:edit, :index, :create, :update, :destroy]
-  resources :schedule_days ,only: [:create,:show,:destroy]
-  resources :day_tasks,only: [:create,:destroy,:show]
+  resources :schedule_days, only: [:create, :show, :destroy]
+  resources :day_tasks, only: [:create, :destroy, :show]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
