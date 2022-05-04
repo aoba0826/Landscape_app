@@ -7,7 +7,6 @@ class NotificationsController < ApplicationController
     @notifications.where(checked: false).each do |notification|
       notification.update(checked: true)
     end
-
     @notifications = @notifications.page(params[:page]).order(created_at: :desc).per(15)
   end
 
